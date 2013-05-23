@@ -2,4 +2,10 @@ extends layout
 
 block content
   h1= title
-  p Welcome to #{title}
+
+  ul
+  for item, index in items
+    if(index % 2) == 0
+      li.even= item.title
+    else
+      li.odd= item.title

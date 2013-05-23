@@ -1,13 +1,6 @@
 request = require("request")
 
 
-getAllItem = (error, response, body) ->
-  if  error
-    console.log error
-    return
-  console.log body
-
-
 getTimestamp = ->
 
   d = new Date()
@@ -21,7 +14,6 @@ getTimestamp = ->
   timestamp = "#{year}-#{month}-#{day} #{hour}:#{min}:#{sec}"
 
 
-
 api_id = "CbypEuL7JxVm6Q0dF72Y"
 aff_id = "asamples-990"
 time = encodeURIComponent getTimestamp()
@@ -29,7 +21,10 @@ url = "http://affiliate-api.dmm.com/"
 param =  "api_id=#{api_id}&affiliate_id=#{aff_id}&operation=ItemList&version=2.00&timestamp=#{time}&site=DMM.co.jp&keyword=%B5%F0%C6%FD"
 req = url + '?' + param
 
-request
-  uri:  req
-, getAllItem
+
+exports.search = (callback) ->
+  request
+    uri: req
+    encoding: null
+  , callback
 
