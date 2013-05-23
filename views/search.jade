@@ -6,6 +6,12 @@ block content
   ul
   for item, index in items
     if(index % 2) == 0
-      li.even= item.title
+      li.even
+        p
+          span= item.title
+          img(src=item.imageURL.large)
     else
-      li.odd= item.title
+      li.odd
+        p
+          span= item.title
+          img(src=item.imageURL.large)
