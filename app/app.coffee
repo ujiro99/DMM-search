@@ -1,17 +1,25 @@
-
 ###
-Module dependencies.
+ Module dependencies
 ###
-
 express = require("express")
-search = require("./routes/search")
+search  = require("./routes/search")
+http    = require("http")
+path    = require("path")
 
-http = require("http")
-path = require("path")
+
+###
+ init
+###
+rootDir = __dirname.substring(0, __dirname.lastIndexOf("/"))
+
+
+###
+ config
+###
 app = express()
 app.configure ->
   app.set "port", process.env.PORT or 3000
-  app.set "views", __dirname + "/views"
+  app.set "views", "#{rootDir}/views"
   app.set "view engine", "jade"
   app.use express.favicon()
   app.use express.logger("dev")
@@ -20,7 +28,7 @@ app.configure ->
   app.use express.cookieParser("your secret here")
   app.use express.session()
   app.use app.router
-  app.use express.static(path.join(__dirname, "public"))
+  app.use express.static("#{rootDir}/public")
 
 app.configure "development", ->
   app.use express.errorHandler()
@@ -32,6 +40,9 @@ app.configure "development", ->
 app.get "/search", search.index
 
 
+###
+ start
+###
 http.createServer(app).listen app.get("port"), ->
   console.log "Express server listening on port " + app.get("port")
 

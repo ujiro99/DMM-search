@@ -1,4 +1,4 @@
-dmm = require('../dmm')
+dmm = require('../models/dmm')
 {Iconv}  = require "iconv"
 iconv = new Iconv('EUC-JP', 'UTF-8//TRANSLIT//IGNORE')
 
