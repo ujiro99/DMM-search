@@ -48,7 +48,7 @@ buildQuery = (optionalParams) ->
 
   # encode
   param.TIMESTAMP.value = encodeURIComponent util.getTimestamp()
-  optionalParams.keyword = encodeURIComponent util.utf82eucjp optionalParams.keyword
+  optionalParams.keyword = ecl.EscapeEUCJP optionalParams.keyword
 
   # build query
   query = define.URL + '?'

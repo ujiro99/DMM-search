@@ -18,7 +18,7 @@ UnescapeSJIS=function(str){
   })
 };
 
-EscapeEUCJP=function(str){
+exports.EscapeEUCJP=function(str){
   return str.replace(/[^*+.-9A-Z_a-z-]/g,function(s){
     var c=s.charCodeAt(0);
     return (c<128?(c<16?"%0":"%")+c.toString(16):65376<c&&c<65440?"%8E%"+(c-65216).toString(16):(c=JCT8836.indexOf(s))<0?"%A1%A6":"%"+((c-(c%=94))/94+161).toString(16)+"%"+(c+161).toString(16)).toUpperCase()
