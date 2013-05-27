@@ -1,31 +1,13 @@
 {Iconv}  = require "iconv"
 iconvUtf8 = new Iconv('EUC-JP', 'UTF-8//TRANSLIT//IGNORE')
-iconvEucJp = new Iconv('UTF-8//TRANSLIT//IGNORE', 'EUC-JP')
-
-###
- 文字列ををUTF-8からEUC-JPへ変換する
-###
-exports.utf82eucjp = (str) ->
-  if not str?
-    throw new Error('Invalid Argument.')
-  iconvEucJp.convert(str).toString()
 
 
 ###
- 文字列ををEUC-JPからUTF-8へ変換する
+ XMLをEUC-JPからUTF-8へ変換したのち、JSONへ変換する
 ###
-exports.eucjp2utf8 = (str) ->
-  if not str?
-    throw new Error('Invalid Argument.')
-  iconvUtf8.convert(str).toString()
-
-
-###
- レスポンスボディをEUC-JPからUTF-8へ変換したのち、XMLをJSONへ変換する
-###
-exports.xml2json = (body) ->
-  body = this.eucjp2utf8(body)
-  JSON.parse(require('xml2json').toJson(body))
+exports.xml2json = (xml) ->
+  xml = iconvUtf8.convert(xml).toString()
+  JSON.parse(require('xml2json').toJson(xml))
 
 
 ###
