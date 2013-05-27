@@ -23,48 +23,12 @@ describe 'util.coffee のテスト', ->
 
   describe 'getTimestamp のテスト', ->
 
-  describe 'utf82eucjp のテスト', ->
+  describe 'xml2json のテスト', ->
 
-    it 'null', ->
-      fn = ()-> util.utf82eucjp(null)
-      expect(fn).to.throw(Error)
-
-    it 'undefined', ->
-      fn = ()-> util.utf82eucjp(undefined)
-      expect(fn).to.throw(Error)
-
-    it '文字列長 0', ->
-      str = util.utf82eucjp('')
-      expect(str).to.equal('')
-
-    it 'テスト', ->
-      str = util.utf82eucjp('テスト')
-      expect(str).to.equal('�ƥ���')
-
-    it 'きゃりーぱみゅぱみゅ', ->
-      str = util.utf82eucjp('きゃりーぱみゅぱみゅ')
-      expect(str).to.equal('�����꡼�Ѥߤ��Ѥߤ�')
-
-    it '相対性理論', ->
-      str = util.utf82eucjp('相対性理論')
-      expect(str).to.equal('����������')
-
-    it 'abd', ->
-      str = util.utf82eucjp('abd')
-      expect(str).to.equal('abd')
-
-    it 'XYZ', ->
-      str = util.utf82eucjp('XYZ')
-      expect(str).to.equal('XYZ')
-
-    it '0..1', ->
-      str = util.utf82eucjp('0..1')
-      expect(str).to.equal('0..1')
-
-    it 'tmp', ->
-      srt = "%A4%AD%A4%E3%A4%EA%A1%BC%A4%D1%A4%DF%A4%E5%A4%D1%A4%DF%A4%E5"
-      str = decodeURIComponent str
-      console.log str
-      str = util.eucjp2utf8 str
-      expect(str).to.equal('きゃりーぱみゅぱみゅ')
+    it 'rental ppr_cd やくしまるえつこ', ->
+      xml = fs.readFileSync('./test/data/response.xml')
+      json = util.xml2json xml
+      expect(json).to.have.keys('response')
+      expect(json.response.result.items.item[0].title).to.equal('RADIO ONSEN EUTOPIA/やくしまるえつこ')
+      expect(json.response.result.items.item[19].title).to.equal('Keiichi Suzuki:Music for Films and Games/Original Soundtracks/鈴木慶一')
 
