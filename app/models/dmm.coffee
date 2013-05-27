@@ -1,24 +1,81 @@
-request = require("request")
-util = require('../util')
+request  = require("request")
+util     = require('../util')
+check    = require('validator').check
+define   = require("../define")
+ecl      = require('../lib/ecl')
+param    = define.param
+
+# param validator
+validateService = (value) ->
+  check(value).len(0, 20)
+
+validateFloor = (value) ->
+  check(value).len(0, 20)
+
+validateHits = (value) ->
+  check(value).isInt().min(1).max(100)
+
+validateOffset = (value) ->
+  check(value).isInt().min(1)
+
+validateSort = (value) ->
+  check(value).len(0, 20)
+
+validateKeyword = (value) ->
+  check(value).len(0, 100)
 
 
-# params
-api_id  = "CbypEuL7JxVm6Q0dF72Y"
-aff_id  = "asamples-990"
-time    = encodeURIComponent util.getTimestamp()
-url     = "http://affiliate-api.dmm.com/"
-keyword = "%B5%F0%C6%FD"
+# optional parameter
+paramValidator =
+  service: validateService
+  floor:   validateFloor
+  hits:    validateHits
+  offset:  validateOffset
+  sort:    validateSort
+  keyword: validateKeyword
+
+# parameter key list
+validKeys = []
+for key of paramValidator then validKeys.push key
 
 
 # query
-param =  "api_id=#{api_id}&affiliate_id=#{aff_id}&operation=ItemList&version=2.00&timestamp=#{time}&site=DMM.co.jp&keyword=#{keyword}"
-req = url + '?' + param
+buildQuery = (optionalParams) ->
+
+  # validate
+  for k, v of optionalParams
+    checkParam(k, v) if v?
+
+  # encode
+  param.TIMESTAMP.value = encodeURIComponent util.getTimestamp()
+  optionalParams.keyword = encodeURIComponent util.utf82eucjp optionalParams.keyword
+
+  # build query
+  query = define.URL + '?'
+  for k, v of param
+    query += v.name + '=' + v.value + '&' if not v.optional
+  for k, v of optionalParams
+    query += k + '=' + v  + '&' if v?
+  query = query.slice(0, -1)
+
+  return query
+
+
+# if error exists, rise an exception
+checkParam = (key, value) ->
+  check(key, "使用可能なパラメータ").isIn(validKeys)
+  paramValidator[key](value)
 
 
 # execute
-exports.search = (callback) ->
+exports.search = (params, callback) ->
+
+  uri = buildQuery params
+
+  console.log "Request: Get #{uri}"
+
   request
-    uri: req
+    uri: uri
     encoding: null
   , callback
 
