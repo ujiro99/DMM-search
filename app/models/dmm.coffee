@@ -69,11 +69,8 @@ checkParam = (key, value) ->
 
 # execute
 exports.search = (params, callback) ->
-
   uri = buildQuery params
-
-  console.log "Request: Get #{uri}"
-
+  console.log "Request: GET #{uri}"
   request
     uri: uri
     encoding: null
