@@ -2,11 +2,19 @@ extends layout
 
 block content
 
+  != css('list')
   != js('jquery.masonry.min')
   != js('jquery.imagesloaded.min')
+  != js('baseMasonry')
 
-  for item, index in items
-    if item.imageURL
-      img(src=item.imageURL.list)
-    span= item.title
+  #wrap
+
+    section.container
+
+      div#item-container
+        for item, index in items
+          div.item
+            if item.imageURL
+              img.img(src=item.imageURL.list)
+            div.title= item.title
 
