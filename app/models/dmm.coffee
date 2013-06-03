@@ -1,7 +1,8 @@
-request  = require("request")
-util     = require('../util')
+request  = require('request')
+status   = require('http-status')
 check    = require('validator').check
-define   = require("../define")
+util     = require('../util')
+define   = require('../define')
 ecl      = require('../lib/ecl')
 param    = define.param
 
@@ -67,12 +68,42 @@ checkParam = (key, value) ->
   paramValidator[key](value)
 
 
+# called when received search results
+onReceiveResponse = (callback) ->
+  (error, response, body) ->
+    if error
+      callback(error, null)
+      return
+
+    if response.statusCode isnt status.OK
+      error = new Error('http status error')
+      callback(error, null)
+      return
+
+    parseResponse(body, callback)
+
+
+# parse search results
+parseResponse = (xml, callback) ->
+  data = util.xml2json xml
+
+  if data.response.result.errors
+    error = data.response.result.errors
+    callback(error, data.response.result)
+    return
+
+  callback(null, data.response.result)
+
+
 # execute
 exports.search = (params, callback) ->
-  uri = buildQuery params
+  try
+    uri = buildQuery params
+  catch e
+    callback(e, null)
   console.log "Request: GET #{uri}"
   request
     uri: uri
     encoding: null
-  , callback
+  , onReceiveResponse(callback)
 
