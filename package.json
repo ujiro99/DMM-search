@@ -16,6 +16,7 @@
     "connect-assets": "2.4.1",
     "validator": "~1.1.1",
     "mongoose": "~3.6.11",
-    "xml2json": "~0.3.2"
+    "xml2json": "~0.3.2",
+    "stylus": "~0.32.1"
   }
 }
