@@ -1,17 +1,9 @@
 extends layout
 
 block content
-  h1= title
 
-  ul
   for item, index in items
-    if(index % 2) == 0
-      li.even
-        p
-          span= item.title
-          img(src=item.imageURL.large)
-    else
-      li.odd
-        p
-          span= item.title
-          img(src=item.imageURL.large)
+    if item.imageURL
+      img(src=item.imageURL.list)
+    span= item.title
+

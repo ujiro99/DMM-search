@@ -2,9 +2,11 @@
  Module dependencies
 ###
 express = require("express")
-search  = require("./routes/search")
 http    = require("http")
 path    = require("path")
+index   = require("./routes")
+search  = require("./routes/search")
+list    = require("./routes/list")
 
 
 ###
@@ -37,7 +39,9 @@ app.configure "development", ->
 ###
  route
 ###
-app.get "/search", search.index
+app.get  "/",          index.get
+app.get  "/search",    search.get
+app.post "/list",      list.post
 
 
 ###

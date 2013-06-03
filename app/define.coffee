@@ -15,7 +15,7 @@ module.exports =
     OPERATION    : name: "operation",    optional: false, value: "ItemList"
     VERSION      : name: "version",      optional: false, value: "2.00"
     TIMESTAMP    : name: "timestamp",    optional: false, value: ""
-    SITE         : name: "site",         optional: false, value: "DMM.com"
+    SITE         : name: "site",         optional: false, value: "DMM.com" #18禁は DMM.co.jp
 
     # optional
     SERVICE : name: "service", optional: true
