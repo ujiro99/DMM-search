@@ -2,8 +2,12 @@ doctype 5
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-    link(rel='stylesheet', href='//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css')
-    script(src='//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js')
+
+    != css('bootstrap.min')
+    != css('bootstrap-responsive.min')
+    != css('style')
+
+    != js('bootstrap.min')
+
   body
     block content

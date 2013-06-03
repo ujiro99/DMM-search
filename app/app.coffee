@@ -4,6 +4,7 @@
 express = require("express")
 http    = require("http")
 path    = require("path")
+assets  = require("connect-assets")
 index   = require("./routes")
 search  = require("./routes/search")
 list    = require("./routes/list")
@@ -31,6 +32,7 @@ app.configure ->
   app.use express.session()
   app.use app.router
   app.use express.static("#{rootDir}/public")
+  app.use assets(src: 'app/assets', buildDir: 'app/builtAssets')
 
 app.configure "development", ->
   app.use express.errorHandler()

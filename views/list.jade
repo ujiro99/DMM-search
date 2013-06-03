@@ -2,6 +2,9 @@ extends layout
 
 block content
 
+  != js('jquery.masonry.min')
+  != js('jquery.imagesloaded.min')
+
   for item, index in items
     if item.imageURL
       img(src=item.imageURL.list)
