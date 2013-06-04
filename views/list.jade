@@ -9,12 +9,19 @@ block content
 
   #wrap
 
-    section.container
+    section#item-container.container
 
-      div#item-container
-        for item, index in items
+      for item in items
+        a(href=item.affiliateURL)
           div.item
             if item.imageURL
-              img.img(src=item.imageURL.list)
-            div.title= item.title
+              div.img
+                img(src=item.imageURL.small)
+            div.info
+              div.title= item.title
+              if item.iteminfo.keyword && item.iteminfo.keyword.length
+                div.keyword
+                  for obj in item.iteminfo.keyword
+                    if obj.name
+                      div= obj.name
 

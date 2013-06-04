@@ -1,8 +1,8 @@
 $ ->
 
   MIN_WIDTH_PC = 768
-  ITEM_WIDTH_PC = 200
-  ITEM_WIDTH_MOBILE = 200
+  ITEM_WIDTH_PC = 157
+  ITEM_WIDTH_MOBILE = 157
 
   $container = $("#item-container")
 
@@ -37,8 +37,8 @@ $ ->
   ###
   $container.imagesLoaded ->
     $container.masonry
-      itemSelector: ".item"
-      isFitWidth  : true
+      itemSelector : ".item"
+      isFitWidth   : true
     checkColumnWidth()
     $container.fadeTo "slow", 1
 

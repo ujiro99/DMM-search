@@ -2,7 +2,7 @@ extends layout
 
 block content
 
-  form.form-search(action="/list", method="POST", name="search")
+  form(action="/list", method="POST", name="search")
     select(name="search[service]")
       option(value="")              全ての商品
       option(value="lod")           AKB48グループ
@@ -13,6 +13,7 @@ block content
       option(value="mono")          通販
       option(value="rental")        DVD/CDレンタル
       option(value="nandemo")       いろいろレンタル
-    div.input-append
-      input.input-large.search-query(type="text", name="search[keyword]")
-      button.btn(type="submit") Search
+    div.form-search
+      div.input-append
+        input.input-large.search-query(type="text", name="search[keyword]")
+        button.btn(type="submit") Search
