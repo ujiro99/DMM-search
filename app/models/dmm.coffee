@@ -47,16 +47,19 @@ buildQuery = (optionalParams) ->
   for k, v of optionalParams
     checkParam(k, v) if v?
 
+  # merge
+  for k, v of optionalParams
+    console.log "  #{k} : #{v}"
+    param[k] = v if v?
+
   # encode
-  param.TIMESTAMP.value = encodeURIComponent util.getTimestamp()
-  optionalParams.keyword = ecl.EscapeEUCJP optionalParams.keyword
+  param.timestamp = encodeURIComponent util.getTimestamp()
+  param.keyword = ecl.EscapeEUCJP param.keyword
 
   # build query
   query = define.URL + '?'
   for k, v of param
-    query += v.name + '=' + v.value + '&' if not v.optional
-  for k, v of optionalParams
-    query += k + '=' + v  + '&' if v?
+    query += k + '=' + v + '&' if v?
   query = query.slice(0, -1)
 
   return query
