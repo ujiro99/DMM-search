@@ -6,7 +6,7 @@ status = require('http-status')
 module.exports =
 
   ###
-   POST query to search page.
+   POST query from search page.
   ###
   post: (req, res, next) ->
 
