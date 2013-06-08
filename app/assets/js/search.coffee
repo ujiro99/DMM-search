@@ -1,10 +1,13 @@
 #= require options
 #= require jsrender
 #= require itemTemplate
+#= require jquery.masonry.min
+#= require jquery.imagesloaded.min
 
 $ ->
 
   currentOption = {}
+  $container = $('#item-container')
 
   ###
    ready evnet
@@ -14,6 +17,9 @@ $ ->
     $('select#service').change(changeFloor)
     $('button#searchButton').click(submit)
     changeOption()
+    $container.masonry
+      itemSelector : ".item"
+      isFitWidth   : true
 
 
   ###
@@ -57,11 +63,16 @@ $ ->
    render received data
   ###
   renderResult = (items) ->
-    $('#item-container').html $.render.itemTemplate(items)
+    $itemHtml = $($.render.itemTemplate(items))
+    $itemHtml.css display: "none"
+    $container.append $itemHtml
+    $itemHtml.imagesLoaded ->
+      $container.masonry('reload')
+      $itemHtml.fadeIn "slow"
 
 
   ###
-   jsrender template
+   init jsrender template
   ###
   $.templates
     itemTemplate: itemTemplate

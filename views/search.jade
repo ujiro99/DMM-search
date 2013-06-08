@@ -12,18 +12,21 @@ block content
 
     section.container-fluid
 
-      div.span3
-        form#search(action="/search", method="POST", name="search")
-          input#site(type="checkbox", name="search[site]", value='DMM.co.jp', data-toggle="switch")
-          select#service.select-block(name="search[service]")
-          select#floor.select-block(name="search[floor]")
-          div.form-search
-            div.input-append
-              input.search-query(type="text", name="search[keyword]")
-              button#searchButton.btn(type="submit")
-                i.icon-search.icon-white
+      div.row-fluid
 
-      div#item-container.sapn7
+        div.span3
+          form#search(action="/search", method="POST", name="search")
+            input#site(type="checkbox", name="search[site]", value='DMM.co.jp', data-toggle="switch")
+            select#service.select-block(name="search[service]")
+            select#floor.select-block(name="search[floor]")
+            div.form-search
+              div.input-append
+                input.search-query(type="text", name="search[keyword]")
+                button#searchButton.btn(type="submit")
+                  i.icon-search.icon-white
+
+        div.span9
+          #item-container
 
   != js('bootstrap-select')
   != js('bootstrap-switch')
