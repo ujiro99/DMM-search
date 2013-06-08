@@ -50,6 +50,7 @@ $ ->
    submit search query
   ###
   submit = (e) ->
+    $('.item').remove()
     data = $('form#search').serialize()
     $.ajax
       type: "POST"
