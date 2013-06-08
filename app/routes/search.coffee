@@ -8,7 +8,7 @@ module.exports =
   ###
   get : (req, res, next) ->
     res.render 'search',
-      title: 'DmmApiSample'
+      title: 'DMM search'
 
 
   ###
