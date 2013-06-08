@@ -7,7 +7,6 @@ path    = require("path")
 assets  = require("connect-assets")
 index   = require("./routes")
 search  = require("./routes/search")
-list    = require("./routes/list")
 
 
 ###
@@ -44,7 +43,6 @@ app.configure "development", ->
 app.get  "/",          index.get
 app.get  "/search",    search.get
 app.post "/search",    search.post
-app.post "/list",      list.post
 
 
 ###
