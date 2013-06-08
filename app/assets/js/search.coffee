@@ -1,4 +1,6 @@
 #= require options
+#= require jsrender
+#= require itemTemplate
 
 $ ->
 
@@ -10,6 +12,7 @@ $ ->
   $(document).ready ->
     $('#site').change(changeOption)
     $('select#service').change(changeFloor)
+    $('button#searchButton').click(submit)
     changeOption()
 
 
@@ -35,6 +38,33 @@ $ ->
     newOption = currentOption.getChildByValue(service).makeOption()
     $floor = $("select#floor")
     $floor.html(newOption)
+
+
+  ###
+   submit search query
+  ###
+  submit = (e) ->
+    data = $('form#search').serialize()
+    $.ajax
+      type: "POST"
+      url: "/search"
+      data: data
+      success: (msg) -> renderResult(msg)
+    e.preventDefault()
+
+
+  ###
+   render received data
+  ###
+  renderResult = (items) ->
+    $('#item-container').html $.render.itemTemplate(items)
+
+
+  ###
+   jsrender template
+  ###
+  $.templates
+    itemTemplate: itemTemplate
 
 
   ###

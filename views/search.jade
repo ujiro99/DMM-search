@@ -3,24 +3,27 @@ extends layout
 block content
 
   != css('search')
+  != css('list')
 
   #wrap
 
-    h1 DMM search
+    div.page-header
+      h1 DMM search
 
-    div.container-fluid
+    section.container-fluid
+
       div.span3
-
-        form(action="/list", method="POST", name="search")
+        form#search(action="/search", method="POST", name="search")
           input#site(type="checkbox", name="search[site]", value='DMM.co.jp', data-toggle="switch")
           select#service.select-block(name="search[service]")
           select#floor.select-block(name="search[floor]")
           div.form-search
             div.input-append
               input.search-query(type="text", name="search[keyword]")
-              button.btn(type="submit")
+              button#searchButton.btn(type="submit")
                 i.icon-search.icon-white
 
+      div#item-container.sapn7
 
   != js('bootstrap-select')
   != js('bootstrap-switch')

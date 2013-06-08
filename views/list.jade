@@ -14,9 +14,11 @@ block content
       for item in items
         a(href=item.affiliateURL)
           div.item
+            div.img
             if item.imageURL
-              div.img
-                img(src=item.imageURL.small)
+              img(src=item.imageURL.small)
+            else
+              img(src='../images/no-image.png')
             div.info
               div.title= item.title
               if item.iteminfo.keyword && item.iteminfo.keyword.length

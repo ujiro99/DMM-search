@@ -43,6 +43,7 @@ app.configure "development", ->
 ###
 app.get  "/",          index.get
 app.get  "/search",    search.get
+app.post "/search",    search.post
 app.post "/list",      list.post
 
 

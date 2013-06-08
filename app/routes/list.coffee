@@ -1,5 +1,4 @@
 dmm    = require('../models/dmm')
-util   = require('../util')
 status = require('http-status')
 
 
