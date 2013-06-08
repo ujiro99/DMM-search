@@ -6,6 +6,8 @@ block content
 
   #wrap
 
+    h1 DMM search
+
     div.container-fluid
       div.span3
 
@@ -16,7 +18,9 @@ block content
           div.form-search
             div.input-append
               input.span2.search-query(type="text", name="search[keyword]")
-              button.btn(type="submit") Search
+              button.btn(type="submit")
+                i.icon-search.icon-white
+
 
   != js('bootstrap-select')
   != js('bootstrap-switch')
