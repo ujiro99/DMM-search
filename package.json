@@ -1,5 +1,5 @@
 {
-  "name": "DMM search",
+  "name": "DmmSearch",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -18,7 +18,7 @@
     "mongoose": "~3.6.11",
     "xml2json": "~0.3.2",
     "stylus": "~0.32.1"
-  }
+  },
   "engines": {
     "node": "0.8.x",
     "npm": "1.2.10"
