@@ -1,6 +1,6 @@
 itemTemplate =
-"<a href='{{:affiliateURL}}'>
-  <div class='item'>
+"<div class='item'>
+  <a href='{{:affiliateURL}}'>
     <div class='img'>
     {{if imageURL }}
       <img src='{{:imageURL.small}}'>
@@ -18,7 +18,8 @@ itemTemplate =
         </div>
       {{/if}}
     </div>
-  </div>
-</a>"
+  </a>
+</div>
+"
 
 window.itemTemplate = itemTemplate
