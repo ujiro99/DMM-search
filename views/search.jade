@@ -2,15 +2,22 @@ extends layout
 
 block content
 
-  != js('search')
+  != css('search')
 
   #wrap
 
-    form(action="/list", method="POST", name="search")
-      select#service(name="search[service]")
-      select#floor(name="search[floor]")
-      div.form-search
-        div.input-append
-          input.input-large.search-query(type="text", name="search[keyword]")
-          button.btn(type="submit") Search
+    div.container-fluid
+      div.span3
 
+        form(action="/list", method="POST", name="search")
+          input(type="checkbox", checked="", data-toggle="switch")
+          select#service.select-block(name="search[service]")
+          select#floor.select-block(name="search[floor]")
+          div.form-search
+            div.input-append
+              input.span2.search-query(type="text", name="search[keyword]")
+              button.btn(type="submit") Search
+
+  != js('bootstrap-select')
+  != js('bootstrap-switch')
+  != js('search')
