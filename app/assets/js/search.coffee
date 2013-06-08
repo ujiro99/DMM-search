@@ -2,8 +2,9 @@
 
 $ ->
 
+
   ###
-  # ready evnet
+   ready evnet
   ###
   $(document).ready ->
     options = window.options
@@ -11,6 +12,10 @@ $ ->
     $service.append(options.makeOption())
     $service.change(changeFloor)
 
+
+  ###
+   on change evnet of select#service
+  ###
   changeFloor = (e) ->
     service = e.target.value
     newOption = options.getChildByValue(service).makeOption()
