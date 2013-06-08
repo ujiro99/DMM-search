@@ -12,12 +12,12 @@ block content
       div.span3
 
         form(action="/list", method="POST", name="search")
-          input(type="checkbox", checked="", data-toggle="switch")
+          input#site(type="checkbox", name="search[site]", value='DMM.co.jp', data-toggle="switch")
           select#service.select-block(name="search[service]")
           select#floor.select-block(name="search[floor]")
           div.form-search
             div.input-append
-              input.span2.search-query(type="text", name="search[keyword]")
+              input.search-query(type="text", name="search[keyword]")
               button.btn(type="submit")
                 i.icon-search.icon-white
 

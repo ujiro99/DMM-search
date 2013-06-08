@@ -26,6 +26,9 @@ class DmmParam
   validateKeyword = (value) ->
     check(value).len(0, 100)
 
+  validateSite = (value) ->
+    check(value).is(/(DMM.com|DMM.co.jp)/)
+
   # optional parameter
   paramValidator =
     service: validateService
@@ -34,6 +37,7 @@ class DmmParam
     offset:  validateOffset
     sort:    validateSort
     keyword: validateKeyword
+    site:    validateSite
 
   # parameter key list
   validKeys = []
@@ -61,7 +65,8 @@ class DmmParam
 
     # encode
     param.timestamp = encodeURIComponent util.getTimestamp()
-    param.keyword = ecl.EscapeEUCJP param.keyword
+    if param.keyword? && param.keyword.length isnt 0
+      param.keyword = ecl.EscapeEUCJP param.keyword
 
     # build
     query = define.URL + '?'
