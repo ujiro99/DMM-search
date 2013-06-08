@@ -6,8 +6,28 @@
 
 $ ->
 
+  GET_NUM = 20
+  MIN_OFFSET = 1
   currentOption = {}
   $container = $('#item-container')
+  lastQuery = {}
+  # 複数読み込みを抑止するためのフラグ
+  isLoading = false
+
+  ###
+  # scroll evnet
+  ###
+  $(window).scroll ->
+    heightRemain = $(document).height() - $(window).scrollTop()
+    if not isLoading and heightRemain <= screen.availHeight * 1.5
+      if lastQuery.hasOwnProperty('site')
+        isLoading = true
+        $.ajax
+          type: "POST"
+          url: "/search"
+          data: search: lastQuery
+          success: (msg) -> renderResult(msg)
+
 
   ###
    ready evnet
@@ -51,25 +71,44 @@ $ ->
   ###
   submit = (e) ->
     $('.item').remove()
-    data = $('form#search').serialize()
+    lastQuery = getFormData()
+    lastQuery.offset = MIN_OFFSET
+    isLoading = true
     $.ajax
       type: "POST"
       url: "/search"
-      data: data
+      data: search: lastQuery
       success: (msg) -> renderResult(msg)
     e.preventDefault()
+
+
+  getFormData = () ->
+    site = ''
+    isR18 = $('input#site').is(':checked')
+    if isR18
+      site = "DMM.co.jp"
+    else
+      site = "DMM.com"
+    data =
+      site: site
+      service: $('select#service').val()
+      floor: $("select#floor").val()
+      keyword: $('input#keyword').val()
 
 
   ###
    render received data
   ###
   renderResult = (items) ->
-    $itemHtml = $($.render.itemTemplate(items))
-    $itemHtml.css display: "none"
-    $container.append $itemHtml
-    $itemHtml.imagesLoaded ->
-      $container.masonry('reload')
-      $itemHtml.fadeIn "slow"
+    if items.length
+      $itemHtml = $($.render.itemTemplate(items))
+      $itemHtml.css display: "none"
+      $container.append $itemHtml
+      $itemHtml.imagesLoaded ->
+        $container.masonry('reload')
+        $itemHtml.fadeIn "slow"
+      lastQuery.offset += GET_NUM
+      isLoading = false
 
 
   ###
