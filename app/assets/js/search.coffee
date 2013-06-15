@@ -106,11 +106,11 @@ $ ->
       for elem in arr
         if elem.length is 0 then continue
         $elem = $(elem)
-        $elem.css display: 'none'
-        $container.append $elem
+        $elem.find('.img').css display: 'none'
         $elem.imagesLoaded ->
+          $container.append this
           $container.masonry('reload')
-          this.fadeTo 'slow', 1
+          this.find('.img').fadeTo 'slow', 1
       lastQuery.offset += GET_NUM
       isLoading = false
 
