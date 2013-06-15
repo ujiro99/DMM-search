@@ -5,7 +5,7 @@ itemTemplate =
     {{if imageURL }}
       <img src='{{:imageURL.small}}'>
     {{else}}
-      <img src='../images/no-image.png'>
+      <img src='../images/no-image.jpg'>
     {{/if}}
     </div>
     <div class='info'>
