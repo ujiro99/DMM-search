@@ -6,17 +6,16 @@
 
 $ ->
 
-  GET_NUM = 10
+  GET_NUM = 20
   MIN_OFFSET = 1
-  currentOption = {}
-  $container = $('#item-container')
-  $loading = $('#item-loading')
-  lastQuery = {}
-  # 複数読み込みを抑止するためのフラグ
-  isLoading = false
   LOADING = "<img id='loading' src='/images/loader.gif'>"
   CREDIT = "<a href='https://affiliate.dmm.com/api/'><img src='http://pics.dmm.com/af/web_service/com_135_17.gif' width='135' height='17' alt='WEB SERVICE BY DMM.com' /></a>"
   CREDIT_R18 = "<a href='https://affiliate.dmm.com/api/'><img src='http://pics.dmm.com/af/web_service/r18_135_17.gif' width='135' height='17' alt='WEB SERVICE BY DMM.R18' /></a>"
+  $container = $('#item-container')
+  $loading = $('#item-loading')
+  currentOption = {}
+  lastQuery = {}
+  loadingCount = 0
   req = null
 
 
@@ -63,6 +62,7 @@ $ ->
    received event
   ###
   onReceived = (msg) ->
+    loadingCount--
     renderResult(msg)
     requestNextItem()
 
@@ -100,7 +100,7 @@ $ ->
     lastQuery = getFormData()
     lastQuery.offset = MIN_OFFSET
     lastQuery.hits = GET_NUM
-    isLoading = true
+    loadingCount++
     $loading.append(LOADING)
     req = $.ajax
       type: "POST"
@@ -136,14 +136,15 @@ $ ->
       arr = itemHtml.split('#')
       for elem in arr
         if elem.length is 0 then continue
+        loadingCount++
         $elem = $(elem)
         $elem.find('.img').css display: 'none'
         $elem.imagesLoaded ->
           $container.append this
           $container.masonry('reload')
-          this.find('.img').fadeTo 'slow', 1
+          this.find('.img').css display: 'block'
+          loadingCount--
       lastQuery.offset += GET_NUM
-      isLoading = false
       $('#loading').remove()
     else
       $('#loading').remove()
@@ -154,9 +155,9 @@ $ ->
   ###
   requestNextItem = () ->
     heightRemain = $(document).height() - $(window).scrollTop()
-    if not isLoading and heightRemain <= screen.availHeight * 2
+    if loadingCount is 0 and heightRemain <= screen.availHeight * 2
       if lastQuery.hasOwnProperty('site')
-        isLoading = true
+        loadingCount++
         $loading.append(LOADING)
         req = $.ajax
           type: "POST"
