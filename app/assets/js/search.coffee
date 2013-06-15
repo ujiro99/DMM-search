@@ -16,20 +16,12 @@ $ ->
   isLoading = false
   loading = "<img id='loading' src='/images/loader.gif'>"
 
+
   ###
   # scroll evnet
   ###
   $(window).scroll ->
-    heightRemain = $(document).height() - $(window).scrollTop()
-    if not isLoading and heightRemain <= screen.availHeight * 2
-      if lastQuery.hasOwnProperty('site')
-        isLoading = true
-        $loading.append(loading)
-        $.ajax
-          type: "POST"
-          url: "/search"
-          data: search: lastQuery
-          success: (msg) -> renderResult(msg)
+    requestNextItem()
 
 
   ###
@@ -43,6 +35,14 @@ $ ->
     $container.masonry
       itemSelector : ".item"
       isFitWidth   : true
+
+
+  ###
+   received event
+  ###
+  onReceived = (msg) ->
+    renderResult(msg)
+    requestNextItem()
 
 
   ###
@@ -83,7 +83,7 @@ $ ->
       type: "POST"
       url: "/search"
       data: search: lastQuery
-      success: (msg) -> renderResult(msg)
+      success: onReceived
     e.preventDefault()
 
 
@@ -124,6 +124,22 @@ $ ->
       $('#loading').remove()
     else
       $('#loading').remove()
+
+
+  ###
+   request item data if space remained
+  ###
+  requestNextItem = () ->
+    heightRemain = $(document).height() - $(window).scrollTop()
+    if not isLoading and heightRemain <= screen.availHeight * 2
+      if lastQuery.hasOwnProperty('site')
+        isLoading = true
+        $loading.append(loading)
+        $.ajax
+          type: "POST"
+          url: "/search"
+          data: search: lastQuery
+          success: onReceived
 
 
   ###
