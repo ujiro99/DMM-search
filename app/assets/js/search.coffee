@@ -41,6 +41,14 @@ $ ->
 
 
   ###
+   click event of go top
+  ###
+  $("#toTop a").click ->
+    $('html,body').animate({ scrollTop: $($(this).attr("href")).offset().top }, 'slow','swing')
+    return false
+
+
+  ###
    click event
   ###
   onClick = (e) ->
