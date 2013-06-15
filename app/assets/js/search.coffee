@@ -78,6 +78,7 @@ $ ->
     lastQuery.offset = MIN_OFFSET
     lastQuery.hits = GET_NUM
     isLoading = true
+    $loading.append(loading)
     $.ajax
       type: "POST"
       url: "/search"
