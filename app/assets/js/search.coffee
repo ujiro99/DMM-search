@@ -14,7 +14,7 @@ $ ->
   lastQuery = {}
   # 複数読み込みを抑止するためのフラグ
   isLoading = false
-  loading = "<img id='loading' src='/images/loader.gif'>"
+  LOADING = "<img id='loading' src='/images/loader.gif'>"
 
 
   ###
@@ -78,7 +78,7 @@ $ ->
     lastQuery.offset = MIN_OFFSET
     lastQuery.hits = GET_NUM
     isLoading = true
-    $loading.append(loading)
+    $loading.append(LOADING)
     $.ajax
       type: "POST"
       url: "/search"
@@ -134,7 +134,7 @@ $ ->
     if not isLoading and heightRemain <= screen.availHeight * 2
       if lastQuery.hasOwnProperty('site')
         isLoading = true
-        $loading.append(loading)
+        $loading.append(LOADING)
         $.ajax
           type: "POST"
           url: "/search"
