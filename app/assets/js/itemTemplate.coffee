@@ -20,6 +20,6 @@ itemTemplate =
     </div>
   </a>
 </div>
-"
+#"
 
 window.itemTemplate = itemTemplate

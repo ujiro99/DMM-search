@@ -101,12 +101,16 @@ $ ->
   ###
   renderResult = (items) ->
     if items.length
-      $itemHtml = $($.render.itemTemplate(items))
-      $itemHtml.css display: "none"
-      $container.append $itemHtml
-      $itemHtml.imagesLoaded ->
-        $container.masonry('reload')
-        $itemHtml.fadeIn "slow"
+      itemHtml = $.render.itemTemplate(items)
+      arr = itemHtml.split('#')
+      for elem in arr
+        if elem.length is 0 then continue
+        $elem = $(elem)
+        $elem.css display: 'none'
+        $container.append $elem
+        $elem.imagesLoaded ->
+          $container.masonry('reload')
+          this.fadeTo 'slow', 1
       lastQuery.offset += GET_NUM
       isLoading = false
 
