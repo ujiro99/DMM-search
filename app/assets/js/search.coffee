@@ -83,6 +83,9 @@ $ ->
     e.preventDefault()
 
 
+  ###
+   get data from search form
+  ###
   getFormData = () ->
     site = ''
     isR18 = $('input#site').is(':checked')
