@@ -15,6 +15,8 @@ $ ->
   # 複数読み込みを抑止するためのフラグ
   isLoading = false
   LOADING = "<img id='loading' src='/images/loader.gif'>"
+  CREDIT = "<a href='https://affiliate.dmm.com/api/'><img src='http://pics.dmm.com/af/web_service/com_135_17.gif' width='135' height='17' alt='WEB SERVICE BY DMM.com' /></a>"
+  CREDIT_R18 = "<a href='https://affiliate.dmm.com/api/'><img src='http://pics.dmm.com/af/web_service/r18_135_17.gif' width='135' height='17' alt='WEB SERVICE BY DMM.R18' /></a>"
   req = null
 
 
@@ -64,8 +66,10 @@ $ ->
     isR18 = $('#site').is(':checked')
     if isR18
       currentOption = options18
+      $('#dmmcredit').html(CREDIT_R18)
     else
       currentOption = options
+      $('#dmmcredit').html(CREDIT)
     $service = $('select#service')
     $service.html(currentOption.makeOption())
     changeFloor()
