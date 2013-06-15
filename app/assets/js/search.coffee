@@ -15,6 +15,7 @@ $ ->
   # 複数読み込みを抑止するためのフラグ
   isLoading = false
   LOADING = "<img id='loading' src='/images/loader.gif'>"
+  req = null
 
 
   ###
@@ -30,11 +31,22 @@ $ ->
   $(document).ready ->
     $('#site').change(changeOption)
     $('select#service').change(changeFloor)
-    $('button#searchButton').click(submit)
+    $('button#searchButton').click(onClick)
     changeOption()
     $container.masonry
       itemSelector : ".item"
       isFitWidth   : true
+
+
+  ###
+   click event
+  ###
+  onClick = (e) ->
+    req.abort() if req isnt null
+    $('#loading').remove()
+    $('.item').remove()
+    $container.css height: '0px'
+    submit(e)
 
 
   ###
@@ -73,13 +85,12 @@ $ ->
    submit search query
   ###
   submit = (e) ->
-    $('.item').remove()
     lastQuery = getFormData()
     lastQuery.offset = MIN_OFFSET
     lastQuery.hits = GET_NUM
     isLoading = true
     $loading.append(LOADING)
-    $.ajax
+    req = $.ajax
       type: "POST"
       url: "/search"
       data: search: lastQuery
@@ -135,7 +146,7 @@ $ ->
       if lastQuery.hasOwnProperty('site')
         isLoading = true
         $loading.append(LOADING)
-        $.ajax
+        req = $.ajax
           type: "POST"
           url: "/search"
           data: search: lastQuery
