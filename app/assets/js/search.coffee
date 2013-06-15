@@ -6,7 +6,7 @@
 
 $ ->
 
-  GET_NUM = 20
+  GET_NUM = 10
   MIN_OFFSET = 1
   currentOption = {}
   $container = $('#item-container')
@@ -19,7 +19,7 @@ $ ->
   ###
   $(window).scroll ->
     heightRemain = $(document).height() - $(window).scrollTop()
-    if not isLoading and heightRemain <= screen.availHeight * 1.5
+    if not isLoading and heightRemain <= screen.availHeight * 2
       if lastQuery.hasOwnProperty('site')
         isLoading = true
         $.ajax
@@ -73,6 +73,7 @@ $ ->
     $('.item').remove()
     lastQuery = getFormData()
     lastQuery.offset = MIN_OFFSET
+    lastQuery.hits = GET_NUM
     isLoading = true
     $.ajax
       type: "POST"
