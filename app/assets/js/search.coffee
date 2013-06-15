@@ -10,9 +10,11 @@ $ ->
   MIN_OFFSET = 1
   currentOption = {}
   $container = $('#item-container')
+  $loading = $('#item-loading')
   lastQuery = {}
   # 複数読み込みを抑止するためのフラグ
   isLoading = false
+  loading = "<img id='loading' src='/images/loader.gif'>"
 
   ###
   # scroll evnet
@@ -22,6 +24,7 @@ $ ->
     if not isLoading and heightRemain <= screen.availHeight * 2
       if lastQuery.hasOwnProperty('site')
         isLoading = true
+        $loading.append(loading)
         $.ajax
           type: "POST"
           url: "/search"
@@ -117,6 +120,9 @@ $ ->
           this.find('.img').fadeTo 'slow', 1
       lastQuery.offset += GET_NUM
       isLoading = false
+      $('#loading').remove()
+    else
+      $('#loading').remove()
 
 
   ###
