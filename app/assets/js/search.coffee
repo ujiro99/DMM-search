@@ -6,7 +6,7 @@
 
 $ ->
 
-  GET_NUM = 20
+  GET_NUM = 30
   MIN_OFFSET = 1
   LOADING = "<img id='loading' src='/images/loader.gif'>"
   CREDIT = "<a href='https://affiliate.dmm.com/api/'><img src='http://pics.dmm.com/af/web_service/com_135_17.gif' width='135' height='17' alt='WEB SERVICE BY DMM.com' /></a>"
