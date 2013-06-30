@@ -17,6 +17,7 @@ $ ->
   lastQuery = {}
   loadingCount = 0
   req = null
+  notappear = []
 
 
   ###
@@ -24,7 +25,15 @@ $ ->
   ###
   $(window).scroll ->
     requestNextItem()
-
+    newlist = []
+    for $elem, i in notappear
+      imgY = $elem.offset().top - $(window).scrollTop()
+      if imgY < screen.availHeight * 0.7
+        $elem.removeClass('invisible')
+        $elem.addClass('itemFadeIn')
+      else
+        newlist.push $elem
+    notappear = newlist
 
   ###
    ready evnet
@@ -37,7 +46,6 @@ $ ->
     $container.masonry
       itemSelector : ".item"
       isFitWidth   : true
-
 
   ###
    click event of go top
@@ -132,11 +140,15 @@ $ ->
   ###
   renderResult = (items) ->
     if items.length
-      itemHtml = $.render.itemTemplate(items)
-      $(itemHtml).imagesLoaded ->
+      $itemHtml = $($.render.itemTemplate(items))
+      $itemHtml.imagesLoaded ->
+        $imgs = $(this).find('.img')
+        for img in $imgs
+          $img = $(img)
+          $img.addClass('invisible')
+          notappear.push $img
         $container.append this
         $container.masonry('reload')
-        this.find('.img').addClass('itemFadeIn')
       lastQuery.offset += GET_NUM
       $('#loading').remove()
     else
