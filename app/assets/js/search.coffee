@@ -157,7 +157,6 @@ $ ->
   appear = ($elem) ->
     imgY = $elem.offset().top - $(window).scrollTop()
     if imgY < screen.availHeight * 0.7
-      console.log imgY
       $elem.removeClass('invisible')
       $elem.addClass('itemFadeIn')
       return true
