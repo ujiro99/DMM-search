@@ -133,16 +133,10 @@ $ ->
   renderResult = (items) ->
     if items.length
       itemHtml = $.render.itemTemplate(items)
-      arr = itemHtml.split(itemSplitter)
-      for elem in arr
-        if elem.length is 0 then continue
-        loadingCount++
-        $elem = $(elem)
-        $elem.imagesLoaded ->
-          $container.append this
-          $container.masonry('reload')
-          this.find('.img').addClass('itemFadeIn')
-          loadingCount--
+      $(itemHtml).imagesLoaded ->
+        $container.append this
+        $container.masonry('reload')
+        this.find('.img').addClass('itemFadeIn')
       lastQuery.offset += GET_NUM
       $('#loading').remove()
     else

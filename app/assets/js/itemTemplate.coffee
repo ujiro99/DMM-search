@@ -1,5 +1,3 @@
-itemSplitter = '<itemsplitter>'
-
 itemTemplate =
 "<div class='item'>
   <a href='{{:affiliateURL}}'>
@@ -21,8 +19,6 @@ itemTemplate =
       {{/if}}
     </div>
   </a>
-</div>
-#{itemSplitter}"
+</div>"
 
-window.itemSplitter = itemSplitter
 window.itemTemplate = itemTemplate
