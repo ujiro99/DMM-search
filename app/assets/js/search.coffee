@@ -27,13 +27,11 @@ $ ->
     requestNextItem()
     newlist = []
     for $elem, i in notappear
-      imgY = $elem.offset().top - $(window).scrollTop()
-      if imgY < screen.availHeight * 0.7
-        $elem.removeClass('invisible')
-        $elem.addClass('itemFadeIn')
-      else
+      if !appear($elem)
         newlist.push $elem
     notappear = newlist
+
+
 
   ###
    ready evnet
@@ -142,18 +140,29 @@ $ ->
     if items.length
       $itemHtml = $($.render.itemTemplate(items))
       $itemHtml.imagesLoaded ->
+        $container.append this
+        $container.masonry('reload')
         $imgs = $(this).find('.img')
         for img in $imgs
           $img = $(img)
           $img.addClass('invisible')
-          notappear.push $img
-        $container.append this
-        $container.masonry('reload')
+          if !appear($img)
+            notappear.push $img
       lastQuery.offset += GET_NUM
       $('#loading').remove()
     else
       $('#loading').remove()
 
+
+  appear = ($elem) ->
+    imgY = $elem.offset().top - $(window).scrollTop()
+    if imgY < screen.availHeight * 0.7
+      console.log imgY
+      $elem.removeClass('invisible')
+      $elem.addClass('itemFadeIn')
+      return true
+    else
+      return false
 
   ###
    request item data if space remained
