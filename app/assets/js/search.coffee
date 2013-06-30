@@ -133,7 +133,7 @@ $ ->
   renderResult = (items) ->
     if items.length
       itemHtml = $.render.itemTemplate(items)
-      arr = itemHtml.split('#')
+      arr = itemHtml.split(itemSplitter)
       for elem in arr
         if elem.length is 0 then continue
         loadingCount++

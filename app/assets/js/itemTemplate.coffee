@@ -1,3 +1,5 @@
+itemSplitter = '<itemsplitter>'
+
 itemTemplate =
 "<div class='item'>
   <a href='{{:affiliateURL}}'>
@@ -20,6 +22,7 @@ itemTemplate =
     </div>
   </a>
 </div>
-#"
+#{itemSplitter}"
 
+window.itemSplitter = itemSplitter
 window.itemTemplate = itemTemplate
