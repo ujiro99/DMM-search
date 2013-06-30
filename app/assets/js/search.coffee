@@ -138,11 +138,10 @@ $ ->
         if elem.length is 0 then continue
         loadingCount++
         $elem = $(elem)
-        $elem.find('.img').css display: 'none'
         $elem.imagesLoaded ->
           $container.append this
           $container.masonry('reload')
-          this.find('.img').css display: 'block'
+          this.find('.img').addClass('itemFadeIn')
           loadingCount--
       lastQuery.offset += GET_NUM
       $('#loading').remove()
