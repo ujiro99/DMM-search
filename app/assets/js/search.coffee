@@ -8,11 +8,10 @@ $ ->
 
   GET_NUM = 30
   MIN_OFFSET = 1
-  LOADING = "<img id='loading' src='/images/loader.gif'>"
   CREDIT = "<a href='https://affiliate.dmm.com/api/'><img src='http://pics.dmm.com/af/web_service/com_135_17.gif' width='135' height='17' alt='WEB SERVICE BY DMM.com' /></a>"
   CREDIT_R18 = "<a href='https://affiliate.dmm.com/api/'><img src='http://pics.dmm.com/af/web_service/r18_135_17.gif' width='135' height='17' alt='WEB SERVICE BY DMM.R18' /></a>"
   $container = $('#item-container')
-  $loading = $('#item-loading')
+  $loading = $('#loading')
   currentOption = {}
   lastQuery = {}
   isLoading = false
@@ -117,7 +116,7 @@ $ ->
   ###
   request = () ->
     isLoading = true
-    $loading.append(LOADING)
+    $loading.show()
     req = $.ajax
       type: "POST"
       url: "/search"
@@ -131,7 +130,7 @@ $ ->
   requestSuccess = (msg) ->
     isLoading = false
     req = null
-    $('#loading').remove()
+    $loading.hide()
     renderResult(msg)
     requestNextItem()
 
@@ -144,7 +143,7 @@ $ ->
     if req isnt null
       req.abort()
       req = null
-    $('#loading').remove()
+    $loading.hide()
 
 
   ###
