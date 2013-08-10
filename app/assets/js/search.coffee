@@ -58,8 +58,8 @@ $ ->
    start search
   ###
   startSearch = (e) ->
-    req.abort() if req isnt null
-    $('#loading').remove()
+    if loadingCount isnt 0
+      cancel()
     $('.item').remove()
     $container.css height: '0px'
     submit(e)
@@ -79,8 +79,18 @@ $ ->
   ###
   onReceived = (msg) ->
     loadingCount--
+    req = null
+    $('#loading').remove()
     renderResult(msg)
     requestNextItem()
+
+
+  cancel = () ->
+    loadingCount--
+    if req isnt null
+      req.abort()
+      req = null
+    $('#loading').remove()
 
 
   ###
@@ -113,9 +123,14 @@ $ ->
    submit search query
   ###
   submit = (e) ->
+    e.preventDefault()
     lastQuery = getFormData()
     lastQuery.offset = MIN_OFFSET
     lastQuery.hits = GET_NUM
+    request()
+
+
+  request = () ->
     loadingCount++
     $loading.append(LOADING)
     req = $.ajax
@@ -123,7 +138,6 @@ $ ->
       url: "/search"
       data: search: lastQuery
       success: onReceived
-    e.preventDefault()
 
 
   ###
@@ -159,9 +173,7 @@ $ ->
           if !appear($img)
             notappear.push $img
       lastQuery.offset += GET_NUM
-      $('#loading').remove()
     else
-      $('#loading').remove()
 
 
   appear = ($elem) ->
@@ -180,13 +192,7 @@ $ ->
     heightRemain = $(document).height() - $(window).scrollTop()
     if loadingCount is 0 and heightRemain <= screen.availHeight * 2
       if lastQuery.hasOwnProperty('site')
-        loadingCount++
-        $loading.append(LOADING)
-        req = $.ajax
-          type: "POST"
-          url: "/search"
-          data: search: lastQuery
-          success: onReceived
+        request()
 
 
   ###
