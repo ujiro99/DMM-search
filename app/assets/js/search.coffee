@@ -112,6 +112,9 @@ $ ->
     request()
 
 
+  ###
+   request to server
+  ###
   request = () ->
     loadingCount++
     $loading.append(LOADING)
@@ -123,7 +126,7 @@ $ ->
 
 
   ###
-   received event
+   received response, then render result
   ###
   requestSuccess = (msg) ->
     loadingCount--
@@ -133,6 +136,9 @@ $ ->
     requestNextItem()
 
 
+  ###
+   cancel request
+  ###
   requestCancel = () ->
     loadingCount--
     if req isnt null
