@@ -39,7 +39,7 @@ $ ->
   $(document).ready ->
     $('#site').change(changeOption)
     $('select#service').change(changeFloor)
-    $('button#searchButton').click(onClick)
+    $('button#searchButton').click(onClickSearchButton)
     changeOption()
     $container.masonry
       itemSelector : ".item"
@@ -54,9 +54,9 @@ $ ->
 
 
   ###
-   click event
+   click search button event
   ###
-  onClick = (e) ->
+  onClickSearchButton = (e) ->
     req.abort() if req isnt null
     $('#loading').remove()
     $('.item').remove()
