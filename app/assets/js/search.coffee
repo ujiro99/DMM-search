@@ -15,7 +15,7 @@ $ ->
   $loading = $('#item-loading')
   currentOption = {}
   lastQuery = {}
-  loadingCount = 0
+  isLoading = false
   req = null
   notappear = []
 
@@ -58,7 +58,7 @@ $ ->
    start search
   ###
   startSearch = (e) ->
-    if loadingCount isnt 0
+    if isLoading
       requestCancel()
     $('.item').remove()
     $container.css height: '0px'
@@ -116,7 +116,7 @@ $ ->
    request to server
   ###
   request = () ->
-    loadingCount++
+    isLoading = true
     $loading.append(LOADING)
     req = $.ajax
       type: "POST"
@@ -129,7 +129,7 @@ $ ->
    received response, then render result
   ###
   requestSuccess = (msg) ->
-    loadingCount--
+    isLoading = false
     req = null
     $('#loading').remove()
     renderResult(msg)
@@ -140,7 +140,7 @@ $ ->
    cancel request
   ###
   requestCancel = () ->
-    loadingCount--
+    isLoading = false
     if req isnt null
       req.abort()
       req = null
@@ -198,7 +198,7 @@ $ ->
   ###
   requestNextItem = () ->
     heightRemain = $(document).height() - $(window).scrollTop()
-    if loadingCount is 0 and heightRemain <= screen.availHeight * 2
+    if not isLoading and heightRemain <= screen.availHeight * 2
       if lastQuery.hasOwnProperty('site')
         request()
 
