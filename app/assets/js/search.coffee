@@ -32,7 +32,6 @@ $ ->
     notappear = newlist
 
 
-
   ###
    ready evnet
   ###
@@ -45,6 +44,7 @@ $ ->
     $container.masonry
       itemSelector : ".item"
       isFitWidth   : true
+
 
   ###
    click event of go top
@@ -73,6 +73,7 @@ $ ->
       id = e.target.id
       if id is 'keyword'
         $('#searchButton').focus()
+
 
   ###
    received event
@@ -184,6 +185,7 @@ $ ->
       return true
     else
       return false
+
 
   ###
    request item data if space remained
