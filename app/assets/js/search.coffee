@@ -26,7 +26,7 @@ $ ->
     requestNextItem()
     newlist = []
     for $elem, i in notappear
-      if !appear($elem)
+      if not appear($elem)
         newlist.push $elem
     notappear = newlist
 
@@ -176,12 +176,15 @@ $ ->
         for img in $imgs
           $img = $(img)
           $img.addClass('invisible')
-          if !appear($img)
+          if not appear($img)
             notappear.push $img
       lastQuery.offset += GET_NUM
     else
 
 
+  ###
+   if element is on screen, make element visible
+  ###
   appear = ($elem) ->
     imgY = $elem.offset().top - $(window).scrollTop()
     if imgY < screen.availHeight * 0.7
