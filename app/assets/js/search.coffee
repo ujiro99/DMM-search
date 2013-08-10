@@ -40,6 +40,7 @@ $ ->
     $('#site').change(changeOption)
     $('select#service').change(changeFloor)
     $('button#searchButton').click(startSearch)
+    $(window).keydown(focusNextForm)
     changeOption()
     $container.masonry
       itemSelector : ".item"
@@ -63,6 +64,15 @@ $ ->
     $container.css height: '0px'
     submit(e)
 
+
+  ###
+   if enter key clicked on keyword form, start searching.
+  ###
+  focusNextForm = (e) ->
+    if e.keyCode == 13  # enter key
+      id = e.target.id
+      if id is 'keyword'
+        $('#searchButton').focus()
 
   ###
    received event
