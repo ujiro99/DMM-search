@@ -59,7 +59,7 @@ $ ->
   ###
   startSearch = (e) ->
     if loadingCount isnt 0
-      cancel()
+      requestCancel()
     $('.item').remove()
     $container.css height: '0px'
     submit(e)
@@ -73,25 +73,6 @@ $ ->
       id = e.target.id
       if id is 'keyword'
         $('#searchButton').focus()
-
-
-  ###
-   received event
-  ###
-  onReceived = (msg) ->
-    loadingCount--
-    req = null
-    $('#loading').remove()
-    renderResult(msg)
-    requestNextItem()
-
-
-  cancel = () ->
-    loadingCount--
-    if req isnt null
-      req.abort()
-      req = null
-    $('#loading').remove()
 
 
   ###
@@ -138,7 +119,26 @@ $ ->
       type: "POST"
       url: "/search"
       data: search: lastQuery
-      success: onReceived
+      success: requestSuccess
+
+
+  ###
+   received event
+  ###
+  requestSuccess = (msg) ->
+    loadingCount--
+    req = null
+    $('#loading').remove()
+    renderResult(msg)
+    requestNextItem()
+
+
+  requestCancel = () ->
+    loadingCount--
+    if req isnt null
+      req.abort()
+      req = null
+    $('#loading').remove()
 
 
   ###
