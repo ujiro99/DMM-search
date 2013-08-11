@@ -29,17 +29,13 @@ block content
               a(href="#wrap")
                 img(src='/images/goTop.png')
             li
-              // Facebook
-              <iframe src="http://www.facebook.com/plugins/like.php?href=http%3A%2F%2Fdmm-search.herokuapp.com%2F&amp;layout=box_count&amp;show_faces=false&amp;width=90&amp;action=like&amp;colorscheme=light&amp;height=62" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:90px; height:62px;" allowTransparency="true"></iframe>
+              div#facebook
             li
-              // はてなブックマーク
-              <a href="http://b.hatena.ne.jp/entry/http%3A%2F%2Fdmm-search.herokuapp.com%2F" class="hatena-bookmark-button" data-hatena-bookmark-title="DMM%20search" data-hatena-bookmark-layout="vertical" title="このエントリーをはてなブックマークに追加"><img src="http://b.st-hatena.com/images/entry-button/button-only.gif" alt="このエントリーをはてなブックマークに追加" width="20" height="20" style="border: none;" /></a><script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>
+              div#hatena
             li
-              // Google +1
-              <g:plusone size="tall" href="http://dmm-search.herokuapp.com/"></g:plusone><script type="text/javascript">(function(){var po=document.createElement("script");po.type="text/javascript";po.async=true;po.src="https://apis.google.com/js/plusone.js";var s=document.getElementsByTagName("script")[0];s.parentNode.insertBefore(po,s);})();</script>
+              div#google
             li
-              // Twitter
-              <a href="http://twitter.com/share" class="twitter-share-button" data-count="vertical" data-lang="ja">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+              div#twitter
 
         div.span9
           div#item-container
@@ -48,3 +44,4 @@ block content
 
   != js('search-ui')
   != js('search')
+  != js('social-button')
