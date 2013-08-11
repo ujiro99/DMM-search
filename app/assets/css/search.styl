@@ -1,22 +1,23 @@
 @import websymbolsligaregular
 
+body
+
+  background-color: whitesmoke
+
 #wrap
 
   .page-title
     font-size: 30px
     font-weight: 100
-    float: left
     margin-bottom: 0px
+    float: left
 
   .page-header
-    padding-left: 10px
-    padding-bottom: 7px
-    border-bottom: 0
+    border-bottom: 1px dotted #60605b
+    margin-left: 11px
     margin-bottom: 20px
-
-    hr
-      color: #eee
-      margin: 10px 0 0 0
+    @media screen and (max-width: 767px)
+      margin-bottom: 10px
 
   .switch
     margin-bottom: 6px
@@ -53,9 +54,7 @@
     margin-top: 16px
 
   #social_box
-
     @media screen and (min-width: 768px)
-      background: #f0f0f0
       width: 71px
       bottom: 5px
       margin-left: 0px
@@ -68,7 +67,7 @@
 
     @media screen and (max-width: 767px)
       list-style-type: none
-      margin: 10px 0px 0px 5px
+      margin: 10px 0px 30px 5px
       li
         display: inline-block
         height: 20px

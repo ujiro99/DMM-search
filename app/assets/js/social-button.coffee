@@ -15,7 +15,7 @@ $ ->
       fixSocialBoxPosition()
       $(window).scroll fixSocialBoxPosition
     else
-      $('#social_box').insertAfter('#header-hr')
+      $('#social_box').insertAfter('.page-header')
       addSocialButtonMobile()
 
 
