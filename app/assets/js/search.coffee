@@ -14,7 +14,7 @@ $ ->
   $loading = $('#loading')
   currentOption = {}
   lastQuery = {}
-  isLoading = false
+  requestEnable = true
   req = null
   notappear = []
 
@@ -56,7 +56,7 @@ $ ->
    start search
   ###
   startSearch = (e) ->
-    if isLoading
+    if not requestEnable
       requestCancel()
     $('.item').remove()
     $container.css height: '0px'
@@ -114,7 +114,7 @@ $ ->
    request to server
   ###
   request = () ->
-    isLoading = true
+    requestEnable = false
     $loading.show()
     req = $.ajax
       type: "POST"
@@ -127,7 +127,7 @@ $ ->
    received response, then render result
   ###
   requestSuccess = (msg) ->
-    isLoading = false
+    requestEnable = true
     req = null
     $loading.hide()
     renderResult(msg)
@@ -138,7 +138,7 @@ $ ->
    cancel request
   ###
   requestCancel = () ->
-    isLoading = false
+    requestEnable = true
     if req isnt null
       req.abort()
       req = null
@@ -160,7 +160,7 @@ $ ->
    render received data
   ###
   renderResult = (items) ->
-    if items.length
+    if items.length > 0
       $itemHtml = $($.render.itemTemplate(items))
       $itemHtml.imagesLoaded ->
         $container.append this
@@ -173,6 +173,7 @@ $ ->
             notappear.push $img
       lastQuery.offset += GET_NUM
     else
+      requestEnable = false
 
 
   ###
@@ -193,7 +194,7 @@ $ ->
   ###
   requestNextItem = () ->
     heightRemain = $(document).height() - $(window).scrollTop()
-    if not isLoading and heightRemain <= screen.availHeight * 2
+    if requestEnable and heightRemain <= screen.availHeight * 2
       if lastQuery.hasOwnProperty('site')
         request()
 
