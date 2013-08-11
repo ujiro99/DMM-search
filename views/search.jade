@@ -15,7 +15,7 @@ block content
 
         div.span3
           form#search(action="/search", method="POST", name="search")
-            input#site(type="checkbox", name="search[site]", value='DMM.co.jp', data-toggle="switch")
+            input#site(type="hidden", name="search[site]", value=site)
             select#service.select-block(name="search[service]")
             select#floor.select-block(name="search[floor]")
             div.form-search

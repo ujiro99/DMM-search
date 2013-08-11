@@ -6,9 +6,19 @@ module.exports =
   ###
    GET search page.
   ###
-  get : (req, res, next) ->
+  get: (req, res, next) ->
     res.render 'search',
       title: 'DMM search'
+      site: 'DMM.com'
+
+
+  ###
+   GET R18 search page.
+  ###
+  getR18: (req, res, next) ->
+    res.render 'search',
+      title: 'DMM search'
+      site: 'DMM.co.jp'
 
 
   ###

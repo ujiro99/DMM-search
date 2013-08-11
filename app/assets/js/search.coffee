@@ -35,7 +35,6 @@ $ ->
    ready evnet
   ###
   $(document).ready ->
-    $('#site').change(changeOption)
     $('select#service').change(changeFloor)
     $('button#searchButton').click(startSearch)
     $(window).keydown(focusNextForm)
@@ -78,7 +77,7 @@ $ ->
    change select options of #service and #floor
   ###
   changeOption = () ->
-    isR18 = $('#site').is(':checked')
+    isR18 = $('#site').val() is "DMM.co.jp"
     if isR18
       currentOption = options18
       $('#dmmcredit').html(CREDIT_R18)
@@ -150,14 +149,8 @@ $ ->
    get data from search form
   ###
   getFormData = () ->
-    site = ''
-    isR18 = $('input#site').is(':checked')
-    if isR18
-      site = "DMM.co.jp"
-    else
-      site = "DMM.com"
     data =
-      site: site
+      site: $('#site').val()
       service: $('select#service').val()
       floor: $("select#floor").val()
       keyword: $('input#keyword').val()
