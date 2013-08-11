@@ -59,6 +59,7 @@ $ ->
     if not requestEnable
       requestCancel()
     $('.item').remove()
+    $('#load-complete').hide()
     $container.css height: '0px'
     submit(e)
 
@@ -174,6 +175,7 @@ $ ->
       lastQuery.offset += GET_NUM
     else
       requestEnable = false
+      $('#load-complete').show()
 
 
   ###
