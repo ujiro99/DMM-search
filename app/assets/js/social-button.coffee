@@ -16,6 +16,7 @@ $ ->
       $(window).scroll fixSocialBoxPosition
     else
       $('#social_box').insertAfter('.page-header')
+      $('#dmmcredit').appendTo('#social_box')
       addSocialButtonMobile()
 
 

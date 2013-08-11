@@ -6,30 +6,32 @@ body
 
 #wrap
 
+  .page-header
+    border-bottom: 1px dotted #60605b
+    margin-bottom: 20px
+    @media screen and (min-width: 767px)
+      margin-left: 11px
+    @media screen and (max-width: 767px)
+      margin-bottom: 10px
+
   .page-title
     font-size: 30px
     font-weight: 100
     margin-bottom: 0px
-    float: left
+    display: inline-block
 
-  .page-header
-    border-bottom: 1px dotted #60605b
-    margin-left: 11px
-    margin-bottom: 20px
-    @media screen and (max-width: 767px)
-      margin-bottom: 10px
-
-  .switch
-    margin-bottom: 6px
+  .credit
+    margin-bottom: 0px
+    display: inline-block
+    position: fixed
+    @media screen and (min-width: 767px)
+      padding: 17px 6px 0 0
+      right: 2px
 
   .input-append
     display: block
     padding-right: 66px
 
-  .credit
-    text-align: right
-    padding: 11px 6px 0 0
-    margin-bottom: 0px
 
   a
     text-decoration: none
