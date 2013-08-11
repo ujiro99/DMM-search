@@ -1,6 +1,6 @@
 #= require jquery.socialbutton-1.9.1.min
 
-FIX_START = 225
+FIX_START = 235
 MIN_WIDTH = 767
 url = 'http://dmm-search.herokuapp.com/search'
 
@@ -15,6 +15,7 @@ $ ->
       fixSocialBoxPosition()
       $(window).scroll fixSocialBoxPosition
     else
+      $('#social_box').insertAfter('#header-hr')
       addSocialButtonMobile()
 
 
