@@ -6,7 +6,7 @@ $ ->
 
   $('#twitter').socialbutton('twitter',
     button : 'vertical'
-    text   : 'つぶやきに含めるテキスト'
+    text   : 'DMMで検索!'
     url    : url)
 
   $('#facebook').socialbutton('facebook_like',
