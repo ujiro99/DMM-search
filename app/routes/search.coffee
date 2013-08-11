@@ -20,7 +20,6 @@ module.exports =
       title: 'DMM search'
       site: 'DMM.co.jp'
 
-
   ###
    POST query.
   ###
