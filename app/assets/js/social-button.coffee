@@ -1,6 +1,7 @@
 #= require jquery.socialbutton-1.9.1.min
 
 FIX_START = 225
+MIN_WIDTH = 767
 url = 'http://dmm-search.herokuapp.com/search'
 
 $ ->
@@ -9,31 +10,29 @@ $ ->
    ready event
   ###
   $(document).ready ->
-    addSocialButton()
-
-
-  ###
-   scroll event
-  ###
-  $(window).scroll ->
-    scrollTop = $(window).scrollTop()
-    scrollBottom = scrollTop + $(window).height()
-    if scrollBottom - $('#social_box').height() > FIX_START
-      if scrollBottom < document.height
-        $('#social_box').addClass 'fixed'
-    else
-      if scrollTop >= 0
-        $('#social_box').removeClass 'fixed'
-
-
-  ###
-   add SocialButtons
-  ###
-  addSocialButton = () ->
-    if $(window).width() > 767
+    if $(window).width() > MIN_WIDTH
       addSocialButtonPCandTablet()
+      fixSocialBoxPosition()
+      $(window).scroll fixSocialBoxPosition
     else
       addSocialButtonMobile()
+
+
+  ###
+   don't pile search form and social box
+  ###
+  fixSocialBoxPosition = () ->
+    scrollTop = $(window).scrollTop()
+    scrollBottom = scrollTop + $(window).height()
+
+    # out of document area
+    if scrollTop < 0 or scrollBottom > document.height
+      return
+
+    if scrollBottom - $('#social_box').height() > FIX_START
+      $('#social_box').addClass 'fixed'
+    else
+      $('#social_box').removeClass 'fixed'
 
 
   ###
