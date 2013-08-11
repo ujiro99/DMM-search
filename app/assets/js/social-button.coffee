@@ -1,5 +1,6 @@
 #= require jquery.socialbutton-1.9.1.min
 
+FIX_START = 225
 url = 'http://dmm-search.herokuapp.com/search'
 
 $ ->
@@ -9,6 +10,20 @@ $ ->
   ###
   $(document).ready ->
     addSocialButton()
+
+
+  ###
+   scroll event
+  ###
+  $(window).scroll ->
+    scrollTop = $(window).scrollTop()
+    scrollBottom = scrollTop + $(window).height()
+    if scrollBottom - $('#social_box').height() > FIX_START
+      if scrollBottom < document.height
+        $('#social_box').addClass 'fixed'
+    else
+      if scrollTop >= 0
+        $('#social_box').removeClass 'fixed'
 
 
   ###
