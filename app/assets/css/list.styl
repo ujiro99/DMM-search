@@ -2,17 +2,30 @@
 
 .item
   width: 147px
-  margin: 5px
   background-color: #fefefe
   box-shadow: 0 0px 15px -1px rgba(34, 25, 25, 0.2)
   border-radius: 3px
   float: left
+  @media screen and (min-width: 479px)
+    margin: 5px
+  @media screen and (max-width: 479px)
+    margin: 5px 0 5px 0
+    width: 280px
 
   .img
     text-align: center
+    @media screen and (max-width: 479px)
+      display: inline-block
+      width: 147px
+      vertical-align: middle
 
   .info
     margin: 9px 10px 9px 10px
+    @media screen and (max-width: 479px)
+      display: inline-block
+      vertical-align: middle
+      width: 115px
+      margin: 6px 0px 6px 5px
 
     .title
       text-shadow: 0 1px #fff
