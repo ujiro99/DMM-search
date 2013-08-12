@@ -8,6 +8,7 @@ $ ->
 
   GET_NUM = 30
   MIN_OFFSET = 1
+  MIN_WIDTH = 767
   CREDIT = "<a href='https://affiliate.dmm.com/api/'><img src='http://pics.dmm.com/af/web_service/com_135_17.gif' width='135' height='17' alt='WEB SERVICE BY DMM.com' /></a>"
   CREDIT_R18 = "<a href='https://affiliate.dmm.com/api/'><img src='http://pics.dmm.com/af/web_service/r18_135_17.gif' width='135' height='17' alt='WEB SERVICE BY DMM.R18' /></a>"
   $container = $('#item-container')
@@ -166,12 +167,14 @@ $ ->
       $itemHtml.imagesLoaded ->
         $container.append this
         $container.masonry('reload')
-        $imgs = $(this).find('.img')
-        for img in $imgs
-          $img = $(img)
-          $img.addClass('invisible')
-          if not appear($img)
-            notappear.push $img
+        # only on PC, fadein image
+        if $(window).width() > MIN_WIDTH
+          $imgs = $(this).find('.img')
+          for img in $imgs
+            $img = $(img)
+            $img.addClass('invisible')
+            if not appear($img)
+              notappear.push $img
       lastQuery.offset += GET_NUM
     else
       requestEnable = false
