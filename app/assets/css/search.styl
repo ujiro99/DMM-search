@@ -23,10 +23,12 @@ body
   .credit
     margin-bottom: 0px
     display: inline-block
-    position: fixed
     @media screen and (min-width: 767px)
+      position absolute
       padding: 17px 6px 0 0
       right: 2px
+    @media screen and (max-width: 767px)
+      vertical-align: top
 
   .input-append
     display: block
