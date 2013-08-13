@@ -23,7 +23,7 @@ app.configure ->
   app.set "port", process.env.PORT or 3000
   app.set "views", "#{rootDir}/views"
   app.set "view engine", "jade"
-  app.use express.favicon("#{rootDir}/public/favicon.ico", maxAge: maxAge: 2592000000)
+  app.use express.favicon("#{rootDir}/public/favicon.ico", maxAge: 2592000000)
   app.use express.logger("dev")
   app.use express.bodyParser()
   app.use express.methodOverride()
