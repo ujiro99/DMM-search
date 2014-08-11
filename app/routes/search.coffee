@@ -1,4 +1,4 @@
-dmm    = require('../models/dmm')
+dmm    = require('dmm')
 status = require('http-status')
 
 module.exports =
@@ -20,12 +20,16 @@ module.exports =
       title: 'DMM search'
       site: 'DMM.co.jp'
 
+
   ###
    POST query.
   ###
   post: (req, res, next) ->
 
     params = req.body.search
+    params.api_id = "CbypEuL7JxVm6Q0dF72Y"
+    params.affiliate_id =  "asamples-990"
+
     console.log params
 
     dmm.search params, (error, result) ->
