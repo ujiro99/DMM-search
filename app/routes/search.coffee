@@ -8,6 +8,7 @@ module.exports =
   ###
   get: (req, res, next) ->
     res.render 'search',
+      version: require('../../package.json').version
       title: 'DMM search'
       site: 'DMM.com'
 
@@ -17,6 +18,7 @@ module.exports =
   ###
   getR18: (req, res, next) ->
     res.render 'search',
+      version: require('../../package.json').version
       title: 'DMM search'
       site: 'DMM.co.jp'
 
