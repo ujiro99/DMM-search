@@ -36,7 +36,7 @@ $ ->
    ready evnet
   ###
   $(document).ready ->
-    $('select#service').change(changeFloor)
+    $('p-select.service').change(changeFloor)
     $('button#searchButton').click(startSearch)
     $(window).keydown(focusNextForm)
     changeOption()
@@ -82,12 +82,12 @@ $ ->
     isR18 = $('#site').val() is "DMM.co.jp"
     if isR18
       currentOption = options18
-      $('#dmmcredit').html(CREDIT_R18)
+      $('.dmm-credit').html(CREDIT_R18)
     else
       currentOption = options
-      $('#dmmcredit').html(CREDIT)
-    $service = $('select#service')
-    $service.html(currentOption.makeOption())
+      $('.dmm-credit').html(CREDIT)
+    service = document.querySelector('p-select.service')
+    service.items = currentOption.getOptions()
     changeFloor()
 
 
@@ -95,10 +95,11 @@ $ ->
    change select options of #floor
   ###
   changeFloor = () ->
-    service = $('select#service').val()
-    newOption = currentOption.getChildByValue(service).makeOption()
-    $floor = $("select#floor")
-    $floor.html(newOption)
+    selected = document.querySelector('p-select.service').selected
+    newOption = currentOption.getChildrenByValue(selected)
+    if newOption?
+      floor = document.querySelector("p-select.floor")
+      floor.items = newOption.getOptions()
 
 
   ###

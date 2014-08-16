@@ -7,13 +7,10 @@ class OptionList
         obj.children = new OptionList(obj.children)
       @options.push obj
 
-  makeOption: ->
-    optStr  = ''
-    for obj in @options
-      optStr += "<option value='#{obj.value}'>#{obj.text}</option>"
-    return optStr
+  getOptions: () ->
+    return @options
 
-  getChildByValue: (value) ->
+  getChildrenByValue: (value) ->
     for obj in @options
       if obj.value is value
         return obj.children

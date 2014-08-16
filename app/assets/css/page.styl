@@ -1,94 +1,89 @@
-@import websymbolsligaregular
+@import url(http://fonts.googleapis.com/css?family=Lato:100,300);
 
 body
-
   background-color: whitesmoke
 
-#wrap
+.page-header
+  padding: 4px 0
+  background-color: #fff
+  //@media screen and (min-width: 767px)
+  //  margin-left: 11px
+  //@media screen and (max-width: 767px)
+  //  margin-bottom: 10px
 
-  .page-header
-    border-bottom: 1px dotted #60605b
-    margin-bottom: 20px
-    @media screen and (min-width: 767px)
-      margin-left: 11px
-    @media screen and (max-width: 767px)
-      margin-bottom: 10px
+.page-title
+  font-size: 1.5em
+  font-weight: 100
+  font-family: "Lato"
+  margin: 0 0 0 10px
 
-  .page-title
-    font-size: 30px
-    font-weight: 100
-    margin-bottom: 0px
-    display: inline-block
+.version
+  font-size: 0.8em
+  font-family: "Lato"
+  margin: 0 0 1px 6px
+  color: #aaa
 
-  .credit
-    margin-bottom: 0px
-    display: inline-block
-    @media screen and (min-width: 767px)
-      position absolute
-      padding: 17px 6px 0 0
-      right: 2px
-    @media screen and (max-width: 767px)
-      vertical-align: top
+.dmm-credit
+  margin: 0 5px
+  line-height: 100%
+  //@media screen and (min-width: 767px)
+  //@media screen and (max-width: 767px)
 
-  .input-append
-    display: block
-    padding-right: 66px
+.input-append
+  display: block
+  padding-right: 66px
 
+a
+  text-decoration: none
 
-  a
-    text-decoration: none
+form
+  margin-bottom: 9px
 
-  form
-    margin-bottom: 9px
+#item-container
+  margin: 0 auto
 
-  #item-container
-    margin: 0 auto
+#loading
+  text-align: center
+  margin: 0 auto
+  display: block
+  padding: 25px
 
-  #loading
+#load-complete
+  text-align: center
+  font-size: 60px
+  font-family: 'WebSymbolsLigaRegular'
+  text-rendering: optimizeLegibility
+  margin-top: 16px
+
+#social_box
+  @media screen and (min-width: 768px)
+    width: 71px
+    bottom: 5px
+    margin-left: 0px
+    padding: 0px 4px 0px 4px
+    border-radius: 7px
+    list-style-type: none
     text-align: center
-    margin: 0 auto
-    display: block
-    padding: 25px
+    li
+      padding-bottom: 5px
 
-  #load-complete
-    text-align: center
-    font-size: 60px
-    font-family: 'WebSymbolsLigaRegular'
-    text-rendering: optimizeLegibility
-    margin-top: 16px
+  @media screen and (max-width: 767px)
+    list-style-type: none
+    margin: 10px 0px 30px 5px
+    li
+      display: inline-block
+      height: 20px
 
-  #social_box
-    @media screen and (min-width: 768px)
-      width: 71px
-      bottom: 5px
-      margin-left: 0px
-      padding: 0px 4px 0px 4px
-      border-radius: 7px
-      list-style-type: none
-      text-align: center
-      li
-        padding-bottom: 5px
+    #facebook
+      width: 110px
+    #twitter
+      width: 100px
+    #google
+      width: 70px
+    #hatena
+      width: 60px
 
-    @media screen and (max-width: 767px)
-      list-style-type: none
-      margin: 10px 0px 30px 5px
-      li
-        display: inline-block
-        height: 20px
-
-      #facebook
-        width: 110px
-      #twitter
-        width: 100px
-      #google
-        width: 70px
-      #hatena
-        width: 60px
-
-  li#toTop
-    padding : 8px 0px 5px 0px
-    @media screen and (max-width: 767px)
-      display: none
-
-  .fixed
-    position: fixed
+li#toTop
+  padding : 8px 0px 5px 0px
+  @media screen and (max-width: 767px)
+    display: none

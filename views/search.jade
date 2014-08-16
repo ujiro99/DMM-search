@@ -2,44 +2,45 @@ extends layout
 
 block content
 
-  #wrap
+  #wrap(fit)
 
-    div.page-header
-      p.page-title
-        span.title #{title}
-      p.version
-        span ver. #{version}
-      p#dmmcredit.credit
-        <a href="https://affiliate.dmm.com/api/"><img src="http://pics.dmm.com/af/web_service/com_135_17.gif" width="135" height="17" alt="WEB SERVICE BY DMM.com" /></a>
+    core-header-panel(fit)
+      section.page-header.core-header(horizontal layout end)
+        p.page-title
+          span.title #{title}
+        p.version(flex)
+          span ver. #{version}
+        p.dmm-credit
+          <a href="https://affiliate.dmm.com/api/"><img src="http://pics.dmm.com/af/web_service/com_135_17.gif" width="135" height="17" alt="WEB SERVICE BY DMM.com" /></a>
 
-    section.container-fluid
-
-      div.row-fluid
-
-        div.span3
-
+        div.search-field
           form#search(action="/search", method="POST", name="search")
+
             input#site(type="hidden", name="search[site]", value=site)
-            select#service.select-block(name="search[service]")
-            select#floor.select-block(name="search[floor]")
+
+            p-select.service
+            p-select.floor
+
             div.form-search
               div.input-append
                 input#keyword.search-query(type="text", name="search[keyword]", placeholder="全て")
                 button#searchButton.btn(type="submit")
                   i.icon-search.icon-white
 
-          ul#social_box
-            li#toTop
-              a(href="#wrap")
-                img(src='/images/goTop.png')
-            li
-              div#facebook
-            li
-              div#twitter
-            li
-              div#hatena
-            li
-              div#google
+      section.search-result(fit)
+        
+        ul#social_box
+          li#toTop
+            a(href="#wrap")
+              img(src='/images/goTop.png')
+          li
+            div#facebook
+          li
+            div#twitter
+          li
+            div#hatena
+          li
+            div#google
 
         div.span9
           div#item-container
