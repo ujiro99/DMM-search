@@ -33,16 +33,17 @@ $ ->
 
 
   ###
-   ready evnet
+   polymer ready evnet
   ###
-  $(document).ready ->
-    $('p-select.service').change(changeFloor)
+  $(window).on('polymer-ready', ()->
+    $('p-select.service').on('selected', changeFloor)
     $('button#searchButton').click(startSearch)
     $(window).keydown(focusNextForm)
     changeOption()
     $container.masonry
       itemSelector : ".item"
       isFitWidth   : true
+  )
 
 
   ###
@@ -96,6 +97,7 @@ $ ->
   ###
   changeFloor = () ->
     selected = document.querySelector('p-select.service').selected
+    if selected is 0 then selected = ''
     newOption = currentOption.getChildrenByValue(selected)
     if newOption?
       floor = document.querySelector("p-select.floor")
