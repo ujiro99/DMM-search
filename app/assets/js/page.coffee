@@ -33,11 +33,11 @@ $ ->
 
 
   ###
-   polymer ready evnet
+   on polymer ready evnet fired, start initialize.
   ###
   $(window).on('polymer-ready', ()->
-    $('p-select.service').on('selected', changeFloor)
-    $('button#searchButton').click(startSearch)
+    $('.service').on('selected', changeFloor)
+    $('.search-button').click(startSearch)
     $(window).keydown(focusNextForm)
     changeOption()
     $container.masonry
@@ -73,7 +73,7 @@ $ ->
     if e.keyCode == 13  # enter key
       id = e.target.id
       if id is 'keyword'
-        $('#searchButton').focus()
+        $('.search-button').focus()
 
 
   ###
@@ -156,8 +156,8 @@ $ ->
   getFormData = () ->
     data =
       site: $('#site').val()
-      service: $('select#service').val()
-      floor: $("select#floor").val()
+      service: $('p-select.service').prop('selected')
+      floor: $("p-select.floor").prop('selected')
       keyword: $('input#keyword').val()
 
 

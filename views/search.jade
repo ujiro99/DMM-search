@@ -13,26 +13,20 @@ block content
         p.dmm-credit
           <a href="https://affiliate.dmm.com/api/"><img src="http://pics.dmm.com/af/web_service/com_135_17.gif" width="135" height="17" alt="WEB SERVICE BY DMM.com" /></a>
 
-        div.search-field
+        div.search-field(horizontal center-justified layout)
           form#search(action="/search", method="POST", name="search")
-
             input#site(type="hidden", name="search[site]", value=site)
-
             p-select.service
             p-select.floor
-
-            div.form-search
-              div.input-append
-                input#keyword.search-query(type="text", name="search[keyword]", placeholder="全て")
-                button#searchButton.btn(type="submit")
-                  i.icon-search.icon-white
+            input#keyword.search-query(type="text", name="search[keyword]", placeholder="keyword...")
+            paper-icon-button.search-button(type="submit" icon="search" class="mini")
 
       section.search-result(fit)
-        
+
         ul#social_box
           li#toTop
-            a(href="#wrap")
-              img(src='/images/goTop.png')
+            paper-fab.mini(icon='expand-less')
+              a(href="#wrap")
           li
             div#facebook
           li
