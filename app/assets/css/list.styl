@@ -1,12 +1,16 @@
+@import 'nib'
+
+*
+  text-decoration: none
 
 .item
   width: 147px
   background-color: #fefefe
-  box-shadow: 0 0px 15px -1px rgba(34, 25, 25, 0.2)
   border-radius: 3px
   float: left
+  position: relative
   @media screen and (min-width: 479px)
-    margin: 5px
+    margin: 8px
   @media screen and (max-width: 479px)
     margin: 5px 0 5px 0
     width: 280px
@@ -35,6 +39,10 @@
       padding: 8px 0px 1px 4px
       color: #aaa
       font-size: 9px
+
+  img
+    width: 100%
+    height: auto
 
 .invisible
   opacity: 0

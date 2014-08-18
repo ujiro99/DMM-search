@@ -1,6 +1,4 @@
 #= require options
-#= require jsrender
-#= require itemTemplate
 #= require jquery.masonry.min
 #= require jquery.imagesloaded.min
 
@@ -17,7 +15,6 @@ $ ->
   lastQuery = {}
   requestEnable = true
   req = null
-  notappear = []
 
 
   ###
@@ -25,11 +22,6 @@ $ ->
   ###
   $(window).scroll ->
     requestNextItem()
-    newlist = []
-    for $elem, i in notappear
-      if not appear($elem)
-        newlist.push $elem
-    notappear = newlist
 
 
   ###
@@ -49,7 +41,7 @@ $ ->
   ###
    click event of go top
   ###
-  $("#toTop a").click ->
+  $("#toTop").click ->
     $('html,body').animate({ scrollTop: $($(this).attr("href")).offset().top }, 'slow','swing')
     return false
 
@@ -136,7 +128,6 @@ $ ->
     req = null
     $loading.hide()
     renderResult(msg)
-    requestNextItem()
 
 
   ###
@@ -166,35 +157,16 @@ $ ->
   ###
   renderResult = (items) ->
     if items.length > 0
-      $itemHtml = $($.render.itemTemplate(items))
-      $itemHtml.imagesLoaded ->
-        $container.append this
-        $container.masonry('reload')
-        # only on PC, fadein image
-        if $(window).width() > MIN_WIDTH
-          $imgs = $(this).find('.img')
-          for img in $imgs
-            $img = $(img)
-            $img.addClass('invisible')
-            if not appear($img)
-              notappear.push $img
+      for item in items
+        $item = $("<p-item></p-item>")
+        $item.prop("item", item)
+        $item.imagesLoaded ->
+          $container.append this
+          $container.masonry('reload')
       lastQuery.offset += GET_NUM
     else
       requestEnable = false
       $('#load-complete').show()
-
-
-  ###
-   if element is on screen, make element visible
-  ###
-  appear = ($elem) ->
-    imgY = $elem.offset().top - $(window).scrollTop()
-    if imgY < screen.availHeight * 0.7
-      $elem.removeClass('invisible')
-      $elem.addClass('itemFadeIn')
-      return true
-    else
-      return false
 
 
   ###
@@ -205,11 +177,4 @@ $ ->
     if requestEnable and heightRemain <= screen.availHeight * 2
       if lastQuery.hasOwnProperty('site')
         request()
-
-
-  ###
-   init jsrender template
-  ###
-  $.templates
-    itemTemplate: itemTemplate
 
