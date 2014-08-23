@@ -1,6 +1,4 @@
 #= require options
-#= require jquery.masonry.min
-#= require jquery.imagesloaded.min
 
 $ ->
 
