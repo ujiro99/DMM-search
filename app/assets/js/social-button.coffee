@@ -15,8 +15,8 @@ $ ->
       fixSocialBoxPosition()
       $(window).scroll fixSocialBoxPosition
     else
-      $('#social_box').insertAfter('.page-header')
-      $('#dmmcredit').appendTo('#social_box')
+      $('#social-box').insertAfter('.page-header')
+      $('.dmm-credit').appendTo('#social-box')
       addSocialButtonMobile()
 
 
@@ -31,10 +31,10 @@ $ ->
     if scrollTop < 0 or scrollBottom > document.height
       return
 
-    if scrollBottom - $('#social_box').height() > FIX_START
-      $('#social_box').addClass 'fixed'
+    if scrollBottom - $('#social-box').height() > FIX_START
+      $('#social-box').addClass 'fixed'
     else
-      $('#social_box').removeClass 'fixed'
+      $('#social-box').removeClass 'fixed'
 
 
   ###
