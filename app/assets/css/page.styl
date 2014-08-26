@@ -75,13 +75,15 @@ form
   &:hover, &:focus
     box-shadow: 0 0 5px -1px #ccc;
 
-.mini /deep/ #icon
-  margin: 4px
-  height: 18px
-  width: 18px
+.search-field
+  .mini /deep/ #icon
+    margin: 4px
+    height: 18px
+    width: 18px
 
 #item-container
   margin: 0 auto
+  padding-left: 90px
 
 #loading
   text-align: center
@@ -100,11 +102,12 @@ form
   @media screen and (min-width: 768px)
     width: 71px
     bottom: 5px
-    margin-left: 0px
-    padding: 0px 4px 0px 4px
+    margin-left: 5px
+    padding: 0px 4px 0px 5px
     border-radius: 7px
     list-style-type: none
     text-align: center
+    background: #f0f0f0
     li
       padding-bottom: 5px
 
@@ -128,3 +131,12 @@ li#toTop
   padding : 8px 0px 5px 0px
   @media screen and (max-width: 767px)
     display: none
+  paper-fab
+    background: #fc6c6c
+
+.side
+  height: 100%
+  width: 82px
+  margin-right: -82px
+  float: left
+

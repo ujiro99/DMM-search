@@ -21,21 +21,22 @@ block content
             input#keyword.search-query(type="text", name="search[keyword]", placeholder="keyword...")
             paper-icon-button.search-button(type="submit" icon="search" class="mini")
 
-      section.search-result(fit)
+      section.content.search-result(fit)
 
-        ul#social-box
-          li#toTop
-            paper-fab.mini(icon='expand-less')
-          li
-            div#facebook
-          li
-            div#twitter
-          li
-            div#hatena
-          li
-            div#google
+        div.side(horizontal layout end)
+          ul#social-box
+            li#toTop
+              paper-fab.mini(icon='expand-less')
+            li
+              div#facebook
+            li
+              div#twitter
+            li
+              div#hatena
+            li
+              div#google
 
-        div.span9
+        div
           div#item-container
           div#item-loading
             img#loading(src='/images/loader.gif', style='display: none')
