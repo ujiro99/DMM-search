@@ -1,0 +1,136 @@
+@import 'nib';
+
+.page-header
+  position: relative
+  padding: 4px 0
+  background-color: #fff
+  //@media screen and (min-width: 767px)
+  //  margin-left: 11px
+  //@media screen and (max-width: 767px)
+  //  margin-bottom: 10px
+
+.page-title
+  font-size: 1.5em
+  font-weight: 100
+  font-family: "Lato"
+  margin: 0 0 0 10px
+
+.version
+  font-size: 0.8em
+  font-family: "Lato"
+  margin: 0 0 1px 6px
+  color: #aaa
+
+.dmm-credit
+  margin: 0 5px
+  line-height: 100%
+  //@media screen and (min-width: 767px)
+  //@media screen and (max-width: 767px)
+
+form
+  margin-bottom: 0px
+  font-size: 0.8em
+
+.search-field
+  position: absolute
+  top: 0
+  left: 0
+  width: 100%
+  height: 100%
+  color: #777
+  & > form
+    position: relative;
+    top: -3px;
+
+.service
+  min-width: 155px;
+
+.floor
+  min-width: 175px;
+
+.search-query
+  height: 2em
+  outline: none;
+  border: solid 1px #ccc;
+  border-radius: 5px;
+  padding: 0 5px;
+  margin: 0 0 0 3px;
+  transition: box-shadow .15s ease;
+  &:hover, &:focus
+    box-shadow: 0 0 10px -3px #ccc;
+
+.search-button
+  height: 25px
+  width: 25px
+  top: 9px
+  left: 8px
+  border-radius: 50%
+  transition: box-shadow .15s ease;
+  &:hover, &:focus
+    box-shadow: 0 0 5px -1px #ccc;
+
+.search-field
+  .mini /deep/ #icon
+    margin: 4px
+    height: 18px
+    width: 18px
+
+.item-container
+  margin: 0 auto
+  padding-left: 90px
+
+.loading
+  text-align: center
+  margin: 0 auto
+  display: block
+  padding: 25px
+
+.load-complete
+  text-align: center
+  font-size: 60px
+  font-family: 'WebSymbolsLigaRegular'
+  text-rendering: optimizeLegibility
+  margin-top: 16px
+
+.social-box
+  @media screen and (min-width: 768px)
+    width: 71px
+    bottom: 5px
+    margin-left: 5px
+    padding: 0px 4px 0px 5px
+    border-radius: 7px
+    list-style-type: none
+    text-align: center
+    background: #f0f0f0
+    li
+      padding-bottom: 5px
+
+  @media screen and (max-width: 767px)
+    list-style-type: none
+    margin: 10px 0px 30px 5px
+    li
+      display: inline-block
+      height: 20px
+
+    #facebook
+      width: 110px
+    #twitter
+      width: 100px
+    #google
+      width: 70px
+    #hatena
+      width: 60px
+
+li.to-top
+  padding : 8px 0px 5px 0px
+  @media screen and (max-width: 767px)
+    display: none
+  paper-fab
+    background: #fc6c6c
+
+.side
+  height: 100%
+  width: 82px
+  margin-right: -82px
+  float: left
+

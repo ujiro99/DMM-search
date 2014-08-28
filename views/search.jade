@@ -4,44 +4,7 @@ block content
 
   #wrap(fit)
 
-    core-header-panel(fit)
-      section.page-header.core-header(horizontal layout end)
-        p.page-title
-          span.title #{title}
-        p.version(flex)
-          span ver. #{version}
-        p.dmm-credit
-          <a href="https://affiliate.dmm.com/api/"><img src="http://pics.dmm.com/af/web_service/com_135_17.gif" width="135" height="17" alt="WEB SERVICE BY DMM.com" /></a>
-
-        div.search-field(horizontal center-justified layout)
-          form#search(action="/search", method="POST", name="search")
-            input#site(type="hidden", name="search[site]", value=site)
-            p-select.service
-            p-select.floor
-            input#keyword.search-query(type="text", name="search[keyword]", placeholder="keyword...")
-            paper-icon-button.search-button(type="submit" icon="search" class="mini")
-
-      section.content.search-result(fit)
-
-        div.side(horizontal layout end)
-          ul#social-box
-            li#toTop
-              paper-fab.mini(icon='expand-less')
-            li
-              div#facebook
-            li
-              div#twitter
-            li
-              div#hatena
-            li
-              div#google
-
-        div
-          div#item-container
-          div#item-loading
-            img#loading(src='/images/loader.gif', style='display: none')
-          div#load-complete(style='display: none')
-            p done
+    search-result(title="#{title}", version="#{version}", site="#{site}")
 
   != js('search')
 

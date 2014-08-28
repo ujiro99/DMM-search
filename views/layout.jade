@@ -9,14 +9,16 @@ html
 
     // StyleSheet
     link(rel="stylesheet" href="/components/normalize-css/normalize.css")
-    != css('list')
     != css('page')
+    != css('search-result')
+    != css('list')
 
     // Script
     script(src='components/jQuery/dist/jquery.min.js')
     script(src='components/platform/platform.js')
     script(src='components/masonry/dist/masonry.pkgd.min.js')
     script(src='components/imagesloaded/imagesloaded.pkgd.min.js')
+    != js('page')
 
     // PolymerComponents
     link(rel="import" href="/components/core-header-panel/core-header-panel.html")
@@ -24,6 +26,7 @@ html
     link(rel="import" href="/components/paper-fab/paper-fab.html")
     link(rel="import" href="/components/p-select/p-select.html")
     link(rel="import" href="/components/p-item/p-item.html")
+    link(rel="import" href="/components/search-result.html")
 
   body(fullbleed, layout, unresolved, touch-action="auto")
     block content
