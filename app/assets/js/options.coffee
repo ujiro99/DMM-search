@@ -1,4 +1,4 @@
-#= require OptionList
+#= require optionList
 
 ###
 # service, floor 一覧

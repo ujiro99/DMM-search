@@ -1,5 +1,5 @@
 #= require options
-#= require social-button
+#= require socialButton
 
 window.searchResult = () ->
 
