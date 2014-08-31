@@ -1,0 +1,36 @@
+polymer-element(name="search-result", attributes="title version site")
+
+  template
+
+    link(rel="stylesheet" href="/css/search-result.css")
+
+    core-header-panel#panel(fit, on-scroll="{{onPanelScroll}}")
+
+      section.page-header.core-header(horizontal layout end)
+        p.page-title
+          span.title {{title}}
+        p.version(flex)
+          span ver. {{version}}
+        p.dmm-credit
+          <a href="https://affiliate.dmm.com/api/"><img src="http://pics.dmm.com/af/web_service/com_135_17.gif" width="135" height="17" alt="WEB SERVICE BY DMM.com" /></a>
+
+        div.search-field(horizontal center-justified layout)
+          form#search(action="/search", method="POST", name="search")
+            p-select#service.service(on-selected="{{changeFloor}}")
+            p-select#floor.floor
+            input#keyword.search-query(type="text", name="search[keyword]", placeholder="keyword...")
+            paper-icon-button#searchButton.search-button.mini(type="submit", icon="search", on-click="{{startSearch}}")
+
+      section.content.search-result(fit)
+
+        p-social-bar#socialBar.side
+
+        div.main
+          div.item-container#itemContainer
+          div.loading-container
+            img#loading.loading(src='/images/loader.gif', style='display: none')
+            div#loadComplete.load-complete(style='display: none')
+              p done
+
+  script.
+    searchResult()

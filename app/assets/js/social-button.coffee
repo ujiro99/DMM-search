@@ -1,4 +1,4 @@
-window.pSocialBar = ->
+window.SocialBar = ->
 
   FIX_START = 69
   MIN_WIDTH = 767

@@ -1,0 +1,82 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-ripple/paper-ripple.html">
+<link rel="import" href="../core-dropdown/core-dropdown.html">
+<link rel="import" href="../paper-item/paper-item.html">
+
+<polymer-element name="p-select" attributes="items selected">
+  <template>
+    <style>
+      :host {
+        display: inline-block;
+      }
+      #select {
+        position: relative;
+      }
+      #dropdown::shadow #menu {
+        padding: 0;
+        top: 0;
+        transition: .2s ease;
+        box-shadow: 0px 5px 8px #ccc;
+      }
+      #dropdown::shadow #arrow {
+        margin: 0 5px;
+      }
+      #dropdown::shadow #control, .shadow-clip {
+        height: 2em;
+        border-radius: 4px;
+      }
+      .shadow-clip {
+        position: absolute;
+        top: 0;
+        width: 100%;
+        pointer-events: none;
+        overflow: hidden;
+      }
+      .item {
+        height: 30px;
+        padding: 0 10px;
+        transition: .15s ease;
+      }
+      .item:hover {
+        background-color: #f0f0f0;
+        padding: 0 5px 0 15px;
+      }
+      .item.selected {
+        background-color: rgba(149, 165, 166, 0.19);
+      }
+    </style>
+
+    <div id="select">
+      <core-dropdown
+        id="dropdown"
+        selected={{selected}}
+        valueattr="value"
+        selectedClass="selected">
+        <template repeat="{{item in items}}">
+          <paper-item class="item" label={{item.text}} value={{item.value}}></paper-item>
+        </template>
+      </core-dropdown>
+      <div class="shadow-clip">
+        <paper-ripple id="ripple" style="pointer-events: none;" initialOpacity="0.1" opacityDecayVelocity="0.3" fit></paper-ripple>
+      </div>
+    </div>
+
+  </template>
+  <script>
+    Polymer({
+      ready: function() {
+        var _this = this;
+        this.$.select.addEventListener('tap', function(e) {
+          _this.$.ripple.downAction({x: e.x, y: e.y});
+          _this.$.ripple.upAction();
+        });
+        this.$.dropdown.addEventListener('core-select', function(e) {
+          _this.fire('selected', e);
+        });
+      },
+      itemsChanged: function(oldValue, newValue) {
+        this.$.dropdown.selected = newValue[0].value;
+      }
+    });
+  </script>
+</polymer-element>

@@ -1,0 +1,46 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../paper-shadow/paper-shadow.html">
+
+<polymer-element name="p-item" attributes="item">
+  <template>
+
+    <link rel="stylesheet" href="/css/list.css">
+
+    <style>
+      :host {
+        display: inline-block;
+      }
+    </style>
+
+    <div class='item'>
+      <a href='{{item.affiliateURL}}'>
+        <div class='img'>
+          <template if="{{item.imageURL}}">
+            <img src='{{item.imageURL.small}}'>
+          </template>
+          <template if="{{!item.imageURL}}">
+            <img src='../../images/no-image.jpg'>
+          </template>
+        </div>
+        <div class='info'>
+          <div class='title'>{{item.title}}</div>
+          <div class='keyword'>
+            <template if="{{!item.iteminfo.keyword.length}}">
+              <div>{{item.iteminfo.keyword.name}}</div>
+            </template>
+            <template repeat="{{k in item.iteminfo.keyword}}">
+              <div>{{k.name}}</div>
+            </template>
+          </div>
+        </div>
+      </a>
+      <paper-shadow z="1"></paper-shadow>
+    </div>
+
+  </template>
+  <script>
+    Polymer({
+      ready: function() { }
+    });
+  </script>
+</polymer-element>

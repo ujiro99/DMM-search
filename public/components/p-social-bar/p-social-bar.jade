@@ -1,0 +1,45 @@
+link(rel="import" href="/components/paper-fab/paper-fab.html")
+link(rel="import" href="/components/twitter-button/dist/twitter-button.html")
+link(rel="import" href="/components/facebook-button/dist/facebook-button.html")
+link(rel="import" href="/components/gplus-elements/dist/gplus-one.html")
+link(rel="import" href="/components/hatebu-button/dist/hatebu-button.html")
+
+polymer-element(name="p-social-bar" attributes="scroller")
+
+  template
+
+    link(rel="stylesheet" href="/css/p-social-bar.css")
+
+    ul#socialBox.social-box
+
+      li#toTop.to-top
+        paper-fab.mini(icon='expand-less', on-click="{{gotoTop}}")
+
+      li
+        facebook-button(
+          href='http://dmm-search.herokuapp.com',
+          layout='box_count',
+          height='67')
+
+      li
+        twitter-button(
+          text='DMMで検索! | DMM search',
+          href='http://dmm-search.herokuapp.com',
+          user='',
+          count='vertical',
+          lang='ja',
+          counturl='',
+          hashtag='',
+          height='62',
+          width='71')
+
+      li
+        hatebu-button(layout="vertical-balloon")
+
+      li
+        gplus-one(
+          href='http://dmm-search.herokuapp.com',
+          size='tall')
+
+  script.
+    SocialBar();
