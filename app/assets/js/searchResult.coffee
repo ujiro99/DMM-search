@@ -1,4 +1,5 @@
 #= require options
+#= require social-button
 
 window.searchResult = () ->
 
@@ -7,16 +8,17 @@ window.searchResult = () ->
   MIN_WIDTH = 767
   CREDIT = "<a href='https://affiliate.dmm.com/api/'><img src='http://pics.dmm.com/af/web_service/com_135_17.gif' width='135' height='17' alt='WEB SERVICE BY DMM.com' /></a>"
   CREDIT_R18 = "<a href='https://affiliate.dmm.com/api/'><img src='http://pics.dmm.com/af/web_service/r18_135_17.gif' width='135' height='17' alt='WEB SERVICE BY DMM.R18' /></a>"
-  
+  COLUMN_WIDTH = 164
+
   _this = null
   _masonry = null
-  
+
   currentOption = {}
   lastQuery = {}
   requestEnable = true
   req = null
 
-  
+
   ###
    if enter key clicked on keyword form, start searching.
   ###
@@ -25,6 +27,7 @@ window.searchResult = () ->
       id = e.target.id
       if id is 'keyword'
         $(_this.$.searchButton).focus()
+
 
   ###
    change select options of #service and #floor
@@ -51,6 +54,7 @@ window.searchResult = () ->
     if newOption?
       this.$.floor.items = newOption.getOptions()
 
+
   ###
    submit search query
   ###
@@ -73,6 +77,7 @@ window.searchResult = () ->
       url: "/search"
       data: search: lastQuery
       success: requestSuccess
+      error: requestCancel
 
 
   ###
@@ -96,6 +101,18 @@ window.searchResult = () ->
 
 
   ###
+   request item data if space remained
+  ###
+  requestNextItem = (e, detail, sender) ->
+    if not requestEnable then return
+    heightRemain = detail.target.scrollHeight - detail.target.scrollTop
+    if heightRemain <= screen.availHeight * 2
+      if lastQuery.hasOwnProperty('site')
+        request()
+        #console.info 'request: ' + heightRemain
+
+
+  ###
    get data from search form
   ###
   getFormData = () ->
@@ -112,16 +129,15 @@ window.searchResult = () ->
   renderResult = (items) ->
     if items.length > 0
       elems = []
-      elements = document.createDocumentFragment()
+      fragment = document.createDocumentFragment()
       for item in items
         el = document.createElement("p-item")
         el.item = item
-        elements.appendChild(el)
+        fragment.appendChild(el)
         elems.push el
-      imagesLoaded elements, () ->
-        _this.$.itemContainer.appendChild this.elements[0]
+      imagesLoaded fragment, () ->
+        _this.$.itemContainer.appendChild fragment
         _masonry.appended elems
-        _masonry.layout()
         requestEnable = true
       lastQuery.offset += GET_NUM
     else
@@ -136,19 +152,11 @@ window.searchResult = () ->
     ###
     ready: () ->
       _this = this
-      _masonry = new Masonry(this.$.itemContainer, {itemSelector: "p-item", columnWidth: 164, transitionDuration: 0})
-
+      _masonry = new Masonry(this.$.itemContainer, {itemSelector: "p-item", columnWidth: COLUMN_WIDTH, transitionDuration: '0.1s'})
       $(window).on('keydown', focusNextForm)
+      this.$.socialBar.scroller = this.$.panel.scroller
 
       changeOption()
-
-
-    ###
-     click event of go top
-    ###
-    gotoTop: () ->
-      $('html,body').animate({ scrollTop: $($(this).attr("href")).offset().top }, 'slow','swing')
-      return false
 
 
     ###
@@ -171,13 +179,8 @@ window.searchResult = () ->
 
 
     ###
-     request item data if space remained
+     on scroll panel, requenst next item, and fix social bar's position.
     ###
-    requestNextItem: (e, detail, sender) ->
-      heightRemain = detail.target.scrollHeight - detail.target.scrollTop
-      if requestEnable and heightRemain <= screen.availHeight * 2
-        if lastQuery.hasOwnProperty('site')
-          request()
-          console.info 'request: ' + heightRemain
+    onPanelScroll: requestNextItem
 
   })

@@ -12,13 +12,14 @@ html
     != css('page')
     != css('search-result')
     != css('list')
+    != css('p-social-bar')
 
     // Script
     script(src='components/jQuery/dist/jquery.min.js')
     script(src='components/platform/platform.js')
     script(src='components/masonry/dist/masonry.pkgd.min.js')
     script(src='components/imagesloaded/imagesloaded.pkgd.min.js')
-    != js('page')
+    != js('searchResult')
 
     // PolymerComponents
     link(rel="import" href="/components/core-header-panel/core-header-panel.html")
@@ -26,6 +27,7 @@ html
     link(rel="import" href="/components/paper-fab/paper-fab.html")
     link(rel="import" href="/components/p-select/p-select.html")
     link(rel="import" href="/components/p-item/p-item.html")
+    link(rel="import" href="/components/p-social-bar/p-social-bar.html")
     link(rel="import" href="/components/search-result.html")
 
   body(fullbleed, layout, unresolved, touch-action="auto")

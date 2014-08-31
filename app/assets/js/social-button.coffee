@@ -1,87 +1,40 @@
-#= require jquery.socialbutton-1.9.1.min
+window.pSocialBar = ->
 
-FIX_START = 235
-MIN_WIDTH = 767
-url = 'http://dmm-search.herokuapp.com/search'
+  FIX_START = 69
+  MIN_WIDTH = 767
+  URL = 'http://dmm-search.herokuapp.com/search'
 
-$ ->
+  _this = null
 
-  ###
-   ready event
-  ###
-  $(document).ready ->
-    if $(window).width() > MIN_WIDTH
-      addSocialButtonPCandTablet()
-      fixSocialBoxPosition()
-      $(window).scroll fixSocialBoxPosition
-    else
-      $('#social-box').insertAfter('.page-header')
-      $('.dmm-credit').appendTo('#social-box')
-      addSocialButtonMobile()
+  Polymer('p-social-bar', {
 
+    scroller: {}
+    ready: () ->
+      _this = this
+      $(window).on('resize', this.fixPosition)
 
-  ###
-   don't pile search form and social box
-  ###
-  fixSocialBoxPosition = () ->
-    scrollTop = $(window).scrollTop()
-    scrollBottom = scrollTop + $(window).height()
+    ###
+     don't pile search form and social box
+    ###
+    fixPosition: () ->
+      scrollTop = $(this.scroller).scrollTop()
+      scrollBottom = scrollTop + $(window).height()
 
-    # out of document area
-    if scrollTop < 0 or scrollBottom > document.height
-      return
+      # out of document area
+      if scrollTop < 0 or scrollBottom > $(document).height()
+        return
 
-    if scrollBottom - $('#social-box').height() > FIX_START
-      $('#social-box').addClass 'fixed'
-    else
-      $('#social-box').removeClass 'fixed'
+      remain = scrollBottom - $(_this.$.socialBox).height()
+      if remain > FIX_START
+        $(_this.$.socialBox).addClass 'fixed'
+      else
+        $(_this.$.socialBox).removeClass 'fixed'
 
+    ###
+     click event of go top
+    ###
+    gotoTop: () ->
+      $(this.scroller).animate({ scrollTop: 0 }, 'slow','swing')
+      return false
 
-  ###
-   add SocialButtons for PC and Tablet
-  ###
-  addSocialButtonPCandTablet = () ->
-    $('#twitter').socialbutton('twitter',
-      button : 'vertical'
-      text   : 'DMMで検索！ | DMM search'
-      url    : url)
-
-    $('#facebook').socialbutton('facebook_like',
-      button : 'box_count'
-      url    : url).height(67)
-
-    $('#google').socialbutton('google_plusone',
-      button : 'tall'
-      url    : url
-      parsetags: 'explicit'
-      count  : true)
-
-    $('#hatena').socialbutton('hatena',
-      button : 'vertical'
-      url    : url
-      title  : 'DMM search')
-
-
-  ###
-   add SocialButtons for Mobile
-  ###
-  addSocialButtonMobile = () ->
-    $('#twitter').socialbutton('twitter',
-      button : 'horizontal'
-      text   : 'DMMで検索！ | DMM search'
-      url    : url)
-
-    $('#facebook').socialbutton('facebook_like',
-      button : 'button_count'
-      url    : url)
-
-    $('#google').socialbutton('google_plusone',
-      button : 'medium'
-      url    : url
-      parsetags: 'explicit'
-      count  : true)
-
-    $('#hatena').socialbutton('hatena',
-      button : 'standard'
-      url    : url
-      title  : 'DMM search')
+  })
