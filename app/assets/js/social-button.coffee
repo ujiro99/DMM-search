@@ -12,6 +12,8 @@ window.pSocialBar = ->
     ready: () ->
       _this = this
       $(window).on('resize', this.fixPosition)
+    domReady: () ->
+      this.fixPosition()
 
     ###
      don't pile search form and social box
