@@ -21,7 +21,7 @@ polymer-element(name="search-result")
           <a href="https://affiliate.dmm.com/api/"><img src="http://pics.dmm.com/af/web_service/com_135_17.gif" width="135" height="17" alt="WEB SERVICE BY DMM.com" /></a>
 
         div.search-field(horizontal center-justified layout)
-          form#search(action="/search", method="POST", name="search")
+          form#search(action="/search", method="POST", name="search", horizontal, layout, center)
             p-select#service.service(on-selected="{{changeFloor}}")
             p-select#floor.floor
             input#keyword.search-query(type="text", name="search[keyword]", placeholder="keyword...")
