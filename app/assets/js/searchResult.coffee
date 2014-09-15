@@ -109,7 +109,6 @@ window.searchResult = () ->
     if heightRemain <= screen.availHeight * 2
       if lastQuery.hasOwnProperty('site')
         request()
-        #console.info 'request: ' + heightRemain
 
 
   ###
