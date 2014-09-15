@@ -32,6 +32,7 @@
     "twitter-button": "https://github.com/ujiro99/twitter-button.git",
     "facebook-button": "~0.1.5",
     "gplus-elements": "~0.2.1",
-    "hatebu-button": "~0.3.1"
+    "hatebu-button": "~0.3.1",
+    "basic-card": "~0.0.2"
   }
 }

@@ -1,4 +1,5 @@
 <link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../basic-card/basic-card.html">
 
 <polymer-element name="p-item" attributes="item">
   <template>
@@ -11,7 +12,7 @@
       }
     </style>
 
-    <div class='item'>
+    <basic-card class="item">
       <a href='{{item.affiliateURL}}'>
         <div class='img'>
           <template if="{{item.imageURL}}">
@@ -33,7 +34,7 @@
           </div>
         </div>
       </a>
-    </div>
+    </basic-card>
 
   </template>
   <script>
