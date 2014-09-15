@@ -146,8 +146,14 @@ window.searchResult = () ->
 
   Polymer('search-result', {
 
+    publish:
+      title: null    # web site title.
+      version: null  # web site version.
+      site: null     # dmm web api url.
+
+
     ###
-      on polymer ready evnet fired, start initialize.
+     on polymer ready evnet fired, start initialize.
     ###
     ready: () ->
       _this = this
