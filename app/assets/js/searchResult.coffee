@@ -123,21 +123,33 @@ window.searchResult = () ->
 
 
   ###
+   Count the number of times that this method was called,
+   and then execute callback.
+  ###
+  counter = (count, callback) ->
+    return () -> unless --count then callback()
+
+
+  ###
    render received data
   ###
   renderResult = (items) ->
     if items.length > 0
       elems = []
       fragment = document.createDocumentFragment()
-      for item in items
-        el = document.createElement("p-item")
-        el.item = item
-        fragment.appendChild(el)
-        elems.push el
-      imagesLoaded fragment, () ->
+
+      imageCounter = counter items.length, () ->
         _this.$.itemContainer.appendChild fragment
         _masonry.appended elems
         requestEnable = true
+
+      for item in items
+        el = document.createElement("p-item")
+        el.item = item
+        el.onImageLoaded = imageCounter
+        fragment.appendChild(el)
+        elems.push el
+
       lastQuery.offset += GET_NUM
     else
       requestEnable = false

@@ -1,7 +1,7 @@
 <link rel="import" href="../polymer/polymer.html">
 <link rel="import" href="../basic-card/basic-card.html">
 
-<polymer-element name="p-item" attributes="item">
+<polymer-element name="p-item" attributes="item onImageLoaded">
   <template>
 
     <link rel="stylesheet" href="/css/item.css">
@@ -39,7 +39,17 @@
   </template>
   <script>
     Polymer({
-      ready: function() { }
+      ready: function() { },
+      itemChanged: function(oldVal, newVal) {
+        var image = new Image();
+        if(newVal.imageURL) {
+          image.src = newVal.imageURL.small;
+        } else {
+          image.src = "../../images/no-image.jpg";
+        }
+        image.addEventListener("load", this.onImageLoaded, false);
+      },
+      onImageLoaded: function() { }
     });
   </script>
 </polymer-element>
