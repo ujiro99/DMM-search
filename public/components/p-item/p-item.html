@@ -1,5 +1,5 @@
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../basic-card/basic-card.html">
+<link rel="import" href="../ujiro-card/ujiro-card.html">
 
 <polymer-element name="p-item" attributes="item onImageLoaded">
   <template>
@@ -12,7 +12,7 @@
       }
     </style>
 
-    <basic-card class="item">
+    <ujiro-card class="item">
       <a href='{{item.affiliateURL}}'>
         <div class='img'>
           <template if="{{item.imageURL}}">
@@ -34,7 +34,7 @@
           </div>
         </div>
       </a>
-    </basic-card>
+    </ujiro-card>
 
   </template>
   <script>

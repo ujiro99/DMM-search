@@ -32,6 +32,6 @@
     "facebook-button": "~0.1.5",
     "gplus-elements": "~0.2.1",
     "hatebu-button": "~0.0.3",
-    "basic-card": "~0.0.2"
+    "ujiro-card": "~0.0.4"
   }
 }
