@@ -31,8 +31,17 @@ app.configure ->
   app.use express.static("#{rootDir}/public")
   app.use assets(src: 'app/assets', buildDir: 'app/builtAssets')
 
+app.configure "production", ->
+  app.use (err, req, res, next) ->
+    console.error(err.stack)
+    res.status(500)
+    res.render('500', {title: "エラーが発生しました。"})
+  app.locals.production = true
+
 app.configure "development", ->
+  console.log 'This is development mode.'
   app.use express.errorHandler()
+  app.locals.production = false
 
 
 ###
