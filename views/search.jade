@@ -10,9 +10,6 @@ html
     // StyleSheet
     link(rel="stylesheet" href="/components/normalize-css/normalize.css")
     != css('page')
-    != css('search-result')
-    != css('item')
-    != css('p-social-bar')
 
     // Script
     script(src='components/platform/platform.js')
@@ -21,7 +18,10 @@ html
     != js('searchResult')
 
     // PolymerComponents
-    link(rel="import" href="/components/search-result/search-result.html")
+    if production
+      link(rel="import" href="/elements/packaged.html")
+    else
+      link(rel="import" href="/elements/search-result/search-result.html")
 
   body(fullbleed, layout, unresolved, touch-action="auto")
 
