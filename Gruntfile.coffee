@@ -119,5 +119,5 @@ module.exports = (grunt) ->
 
   grunt.registerTask('watch', ['esteWatch'])
   grunt.registerTask('vul', ['coffee', 'stylus', 'jade', 'vulcanize'])
-  grunt.registerTask('heroku', ['jshint'])
+  grunt.registerTask('heroku', ['vul'])
 
