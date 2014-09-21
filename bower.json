@@ -17,21 +17,19 @@
     "tests"
   ],
   "dependencies": {
-    "polymer": "Polymer/polymer#~0.3.5",
-    "core-ajax": "Polymer/core-ajax#~0.3.5",
-    "core-dropdown": "Polymer/core-dropdown#~0.3.5",
-    "core-header-panel": "Polymer/core-header-panel#~0.3.5",
-    "paper-fab": "Polymer/paper-fab#~0.3.5",
-    "paper-shadow": "Polymer/paper-shadow#~0.3.5",
-    "paper-ripple": "Polymer/paper-ripple#~0.3.5",
-    "paper-item": "Polymer/paper-item#~0.3.5",
+    "polymer": "Polymer/polymer#~0.4.1",
+    "core-ajax": "Polymer/core-ajax#~0.4.1",
+    "core-header-panel": "Polymer/core-header-panel#~0.4.1",
+    "paper-fab": "Polymer/paper-fab#~0.4.1",
+    "paper-item": "Polymer/paper-item#~0.4.1",
+    "paper-dropdown-menu": "Polymer/paper-dropdown-menu#~0.4.1",
     "normalize-css": "~3.0.1",
     "jQuery": "~2.1.1",
     "masonry": "~3.1.5",
-    "twitter-button": "https://github.com/ujiro99/twitter-button.git",
+    "twitter-button": "https://github.com/ujiro99/twitter-button.git#0.1.8",
     "facebook-button": "~0.1.5",
     "gplus-elements": "~0.2.1",
-    "hatebu-button": "~0.0.3",
+    "hatebu-button": "https://github.com/ujiro99/hatebu-button.git#0.0.4",
     "ujiro-card": "~0.0.4"
   }
 }
